@@ -37,3 +37,26 @@ Before creating the Toggles bar control, we need first to create the single Togg
 1. Create a subclass from `StackLayout`, name it `ToggleButton`, it holds two children: `Label` and `BoxView`, the following diagram illustrates the control outline:
 ![](custom-controls-images/togglebutton-layout.png "Togle bar control outline")
 
+When the label is tapped the selection state is mutated. The visual state is defined by the `TextColor` property of the Label and the `Color` property of the BoxView,
+
+2. Create the bindable properties: `IsSelected`, `SelectedColor`, `UnselectedColor`, `Text`. This is the `SelectedColor` along with the backing field:
+
+```csharp
+public static readonly BindableProperty SelectedColorProperty = BindableProperty.Create(nameof(SelectedColor), typeof(Color), typeof(ToggleButton),
+defaultValue: default(Color), propertyChanged: CustomPropertyChanged);
+
+ public Color SelectedColor
+ {
+     get { return (Color)GetValue(SelectedColorProperty); }
+     set { SetValue(SelectedColorProperty, value); }
+ }
+ ```
+ 
+ > [!NOTE]
+> A bindable property is a special type of property, where the property's value is tracked by the Xamarin.Forms property system.
+> The process of creating a bindable property is as follows:
+> 1. Create a [`BindableProperty`](xref:Xamarin.Forms.BindableProperty) instance with one of the [`BindableProperty.Create`](xref:Xamarin.Forms.BindableProperty.Create*) method overloads.
+> 2. Define property accessors for the [`BindableProperty`](xref:Xamarin.Forms.BindableProperty) instance.
+>   
+> For more information about Xamarin.Forms bindable properties, see [Xamarin.Forms Bindable Properties
+> ](~/xamarin-forms/xaml/bindable-properties.md)
