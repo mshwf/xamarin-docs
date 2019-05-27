@@ -31,8 +31,9 @@ The behavior of the control is as follows:
 4. The control supports multi-selection (that’s why it’s `SelectedItems` not `SelectedItem`) by setting the `IsMultiSelect` property to `true` (defaults to `false`).
 
 Bindable properties is the foundation of custom controls (For more information about Xamarin.Forms bindable properties, see [Xamarin.Forms Bindable Properties
-](~/xamarin-forms/xaml/bindable-properties.md)
+](~/xamarin-forms/xaml/bindable-properties.md))
 
 Before creating the Toggles bar control, we need first to create the single Toggle button control, the steps are as follows:
-1. Create a subclass from StackLayout, name it ToggleButton, it holds two children: `Label` and `BoxView`, The following diagram illustrates the control outline:
+1. Create a subclass from `StackLayout`, name it `ToggleButton`, it holds two children: `Label` and `BoxView`, the following diagram illustrates the control outline:
+![](custom-controls-images/togglebutton-layout.png "Togle bar control outline")
 
