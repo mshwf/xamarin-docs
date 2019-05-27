@@ -20,3 +20,19 @@ The process for creating custom controls is as follows:
 
 ## Create a custom Toggle bar
 
+The toggle bar control is used to show some options that the user can choose from, for example a filtering mechanism or a light-weight tabbed control..etc, see the screenshot below (should look the same on iOS): 
+[screenshot (on Android)]
+
+The behavior of the control is as follows:
+
+1. Every button has a selected state and unselected state determined by the `IsSelected` property.
+2. The states are visually distinguished through the `SelectedColor` and `UnselectedColor` bindable properties.
+3. The selected Items can be obtained through the bindable property `SelectedItems`.
+4. The control supports multi-selection (that’s why it’s `SelectedItems` not `SelectedItem`) by setting the `IsMultiSelect` property to `true` (defaults to `false`).
+
+Bindable properties is the foundation of custom controls (For more information about Xamarin.Forms bindable properties, see [Xamarin.Forms Bindable Properties
+](~/xamarin-forms/xaml/bindable-properties.md)
+
+Before creating the Toggles bar control, we need first to create the single Toggle button control, the steps are as follows:
+1. Create a subclass from StackLayout, name it ToggleButton, it holds two children: `Label` and `BoxView`, The following diagram illustrates the control outline:
+
