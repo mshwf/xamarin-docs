@@ -60,3 +60,35 @@ defaultValue: default(Color), propertyChanged: CustomPropertyChanged);
 >   
 > For more information about Xamarin.Forms bindable properties, see [Xamarin.Forms Bindable Properties
 > ](~/xamarin-forms/xaml/bindable-properties.md)
+
+Attach the `propertyChanged` delegate of the binable properties to the method `CustomPropertyChanged` that will process inputs from the user, like assigning the `ToggleBar`'s `Text` property to the label's `Text` property, and the `ToggleButton`'s `UnselectedColor` to the label's `TextColor` when it's unselected, and attaching a `TapGestureRecognizer` to the Label’s `GestureRecognizers` collection that will mutate the selection state of the toggle button.
+
+```csharp
+private static void CustomPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+{
+    if (newValue == null) return;
+    ((ToggleButton)bindable).Render();
+}
+
+private void Render()
+{
+    button = new Label
+    {
+        TextColor = UnselectedColor,
+        Text = Text,
+        BackgroundColor = BackgroundColor,
+        FontFamily = FontFamily,
+        HorizontalTextAlignment = TextAlignment.Center,
+        VerticalTextAlignment = TextAlignment.Center,
+        Margin = new Thickness(5)
+    };
+
+    box = new BoxView { HeightRequest = 2, Color = BackgroundColor };
+
+    Children.Clear();
+    Children.Add(button);
+    Children.Add(box);
+    button.GestureRecognizers.Add(new TapGestureRecognizer() { Command = new Command(() => TapCommand()) });
+
+}
+```
