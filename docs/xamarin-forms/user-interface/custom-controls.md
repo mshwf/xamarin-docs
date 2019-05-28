@@ -61,7 +61,7 @@ defaultValue: default(Color), propertyChanged: CustomPropertyChanged);
 > For more information about Xamarin.Forms bindable properties, see [Xamarin.Forms Bindable Properties
 > ](~/xamarin-forms/xaml/bindable-properties.md)
 
-3. Attach the `propertyChanged` delegate of the binable properties to a new method- `CustomPropertyChanged`- that will process inputs from the user, like setting the label's `Text` and `TextColor` properties from the `ToggleButton`'s `Text` and `UnselectedColor` properties respectively, and add a `TapGestureRecognizer` to the Label’s `GestureRecognizers` collection that will mutate the selection state of the toggle button when the label is tapped.
+3. Attach the `propertyChanged` delegate of the bindable properties to a new method- `CustomPropertyChanged`- that will process inputs from the user, like setting the label's `Text` and `TextColor` properties from the `ToggleButton`'s `Text` and `UnselectedColor` properties respectively, and add a `TapGestureRecognizer` to the Label’s `GestureRecognizers` collection that will mutate the selection state of the toggle button when the label is tapped.
 
 ```csharp
 private static void CustomPropertyChanged(BindableObject bindable, object oldValue, object newValue)
@@ -140,4 +140,7 @@ Now it can be consumed in XAML:
 <controls:ToggleButton  Text="On" BackgroundColor="Black" UnselectedColor="Gray" SelectedColor="White" SelectionChanged="ToggleButton_SelectionChanged"/>
 ```
 
-The control iis now ready to be used as a standalone control. In the next part you are going to create the ToggleBar control making use of the control you just created.
+The control is now ready to be used as a standalone control. In the next part you are going to create the ToggleBar control making use of the control you just created.
+
+## Toggle bar control
+
