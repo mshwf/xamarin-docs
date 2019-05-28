@@ -27,7 +27,7 @@ The behavior of the control is as follows:
 
 1. Every button has a selected state and unselected state determined by the `IsSelected` property.
 2. The states are visually distinguished through the `SelectedColor` and `UnselectedColor` bindable properties.
-3. The selected Items can be obtained through the bindable property `SelectedItems`.
+3. The selected items can be obtained through the bindable property `SelectedItems`.
 4. The control supports multi-selection (that’s why it’s `SelectedItems` not `SelectedItem`) by setting the `IsMultiSelect` property to `true` (defaults to `false`).
 
 Bindable properties is the foundation of custom controls (For more information about Xamarin.Forms bindable properties, see [Xamarin.Forms Bindable Properties
@@ -61,7 +61,7 @@ defaultValue: default(Color), propertyChanged: CustomPropertyChanged);
 > For more information about Xamarin.Forms bindable properties, see [Xamarin.Forms Bindable Properties
 > ](~/xamarin-forms/xaml/bindable-properties.md)
 
-Attach the `propertyChanged` delegate of the binable properties to the method `CustomPropertyChanged` that will process inputs from the user, like assigning the `ToggleBar`'s `Text` property to the label's `Text` property, and the `ToggleButton`'s `UnselectedColor` to the label's `TextColor` when it's unselected, and attaching a `TapGestureRecognizer` to the Label’s `GestureRecognizers` collection that will mutate the selection state of the toggle button.
+Attach the `propertyChanged` delegate of the binable properties to the method `CustomPropertyChanged` that will process inputs from the user, like assigning the `ToggleButton`'s `Text` property to the label's `Text` property, and the `ToggleButton`'s `UnselectedColor` to the label's `TextColor` when it's unselected, and adding a `TapGestureRecognizer` to the Label’s `GestureRecognizers` collection that will mutate the selection state of the toggle button.
 
 ```csharp
 private static void CustomPropertyChanged(BindableObject bindable, object oldValue, object newValue)
