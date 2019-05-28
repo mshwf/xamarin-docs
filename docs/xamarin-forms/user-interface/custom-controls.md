@@ -61,7 +61,7 @@ defaultValue: default(Color), propertyChanged: CustomPropertyChanged);
 > For more information about Xamarin.Forms bindable properties, see [Xamarin.Forms Bindable Properties
 > ](~/xamarin-forms/xaml/bindable-properties.md)
 
-Attach the `propertyChanged` delegate of the binable properties to the method `CustomPropertyChanged` that will process inputs from the user, like assigning the `ToggleButton`'s `Text` property to the label's `Text` property, and the `ToggleButton`'s `UnselectedColor` to the label's `TextColor` when it's unselected, and adding a `TapGestureRecognizer` to the Label’s `GestureRecognizers` collection that will mutate the selection state of the toggle button.
+3. Attach the `propertyChanged` delegate of the binable properties to a new method- `CustomPropertyChanged`- that will process inputs from the user, like setting the label's `Text` and `TextColor` properties from the `ToggleButton`'s `Text` and `UnselectedColor` properties respectively, and add a `TapGestureRecognizer` to the Label’s `GestureRecognizers` collection that will mutate the selection state of the toggle button when the label is tapped.
 
 ```csharp
 private static void CustomPropertyChanged(BindableObject bindable, object oldValue, object newValue)
@@ -88,7 +88,56 @@ private void Render()
     Children.Clear();
     Children.Add(button);
     Children.Add(box);
-    button.GestureRecognizers.Add(new TapGestureRecognizer() { Command = new Command(() => TapCommand()) });
+    button.GestureRecognizers.Add(new TapGestureRecognizer()
+    {
+        Command = new Command(() =>
+        {
+            IsSelected = !IsSelected;
+            SelectionChanged?.Invoke(this, EventArgs.Empty);
+        })
+    });
+
 
 }
 ```
+Create `SelectionChanged` event that will notify consumers of the ToggleButton when selection changes:
+
+`public event EventHandler SelectionChanged;`
+
+The event gets invoked in the setter of the `IsSelected` property:
+```csharp
+public bool IsSelected
+{
+    get { return (bool)GetValue(IsSelectedProperty); }
+    set
+    {
+        SetValue(IsSelectedProperty, value);
+        MutateSelect();
+    }
+}
+```
+
+The `MutateSelect` method is where the look of the control gets updated when the selection state changes:
+
+```csharp
+void MutateSelect()
+{
+    if (IsSelected)
+    {
+        button.TextColor = SelectedColor;
+        box.Color = SelectedColor;
+    }
+    else
+    {
+        button.TextColor = UnselectedColor;
+        box.Color = BackgroundColor;
+    }
+}
+```
+
+Now it can be consumed in XAML:
+```xaml
+<controls:ToggleButton  Text="On" BackgroundColor="Black" UnselectedColor="Gray" SelectedColor="White" SelectionChanged="ToggleButton_SelectionChanged"/>
+```
+
+The control iis now ready to be used as a standalone control. In the next part you are going to create the ToggleBar control making use of the control you just created.
