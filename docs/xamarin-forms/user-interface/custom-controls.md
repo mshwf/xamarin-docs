@@ -39,7 +39,7 @@ Before creating the Toggles bar control, we need first to create the single Togg
 
 When the label is tapped the selection state is mutated. The visual state is defined by the `TextColor` property of the Label and the `Color` property of the BoxView,
 
-2. Create the bindable properties: `IsSelected`, `SelectedColor`, `UnselectedColor`, `Text`. This is the `SelectedColor` along with the backing field:
+2. Create the bindable properties: `IsSelected`, `SelectedColor`, `UnselectedColor`, `Text` and `FontFamily`. This is the `SelectedColor` along with the backing field:
 
 ```csharp
 public static readonly BindableProperty SelectedColorProperty = BindableProperty.Create(nameof(SelectedColor), typeof(Color), typeof(ToggleButton),
