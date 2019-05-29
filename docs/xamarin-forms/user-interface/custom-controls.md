@@ -100,11 +100,11 @@ private void Render()
 
 }
 ```
-Create `SelectionChanged` event that will notify consumers of the ToggleButton when selection changes:
+Create `SelectionChanged` event that gets invoked when the label is tapped, and it will notify consumers of the ToggleButton when selection changes:
 
 `public event EventHandler SelectionChanged;`
 
-The event gets invoked in the setter of the `IsSelected` property:
+One more step is to call in the setter accessor of the `IsSelected` property:
 ```csharp
 public bool IsSelected
 {
@@ -117,7 +117,7 @@ public bool IsSelected
 }
 ```
 
-The `MutateSelect` method is where the look of the control gets updated when the selection state changes:
+The `MutateSelect` method is where the selection state gets updated visually when the `IsSelected` is mutated:
 
 ```csharp
 void MutateSelect()
@@ -135,7 +135,7 @@ void MutateSelect()
 }
 ```
 
-Now it can be consumed in XAML:
+Now the control can be consumed in XAML:
 ```xaml
 <controls:ToggleButton  Text="On" BackgroundColor="Black" UnselectedColor="Gray" SelectedColor="White" SelectionChanged="ToggleButton_SelectionChanged"/>
 ```
