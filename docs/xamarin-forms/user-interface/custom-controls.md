@@ -104,7 +104,7 @@ Create `SelectionChanged` event that gets invoked when the label is tapped, and 
 
 `public event EventHandler SelectionChanged;`
 
-One more step is to call in the setter accessor of the `IsSelected` property:
+One more step is to call The `MutateSelect` method in the set accessor of the `IsSelected` property:
 ```csharp
 public bool IsSelected
 {
@@ -140,7 +140,7 @@ Now the control can be consumed in XAML:
 <controls:ToggleButton  Text="On" BackgroundColor="Black" UnselectedColor="Gray" SelectedColor="White" SelectionChanged="ToggleButton_SelectionChanged"/>
 ```
 
-The control is now ready to be used as a standalone control. In the next part you are going to create the ToggleBar control making use of the control you just created.
+In the next part you are going to create the ToggleBar control making use of the control you just created.
 
 ## Toggle bar control
 
