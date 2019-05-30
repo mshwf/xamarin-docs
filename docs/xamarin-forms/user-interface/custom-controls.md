@@ -10,7 +10,7 @@ ms.date: 05/23/2019
 ---
 # Create a custom control with Xamarin.Forms
 
-The process of building UI elements requires, at some point, some customizations to give the unique feel and look to the application and to extend the functionality of existing controls. Whether the customization is just overriding the default TextColor of the Entry or creating a brand new control with new look and behavior, building custom controls can provide the simple solution to achieve that, without the need of custom renderers.
+The process of building UI elements requires, at some point, some customizations to give the unique feel and look to the application and to extend the functionality of existing controls. Whether the customization is just overriding the default `TextColor` of the `Entry` or creating a brand new control with new look and behavior, building custom controls can provide the simple solution to achieve that, without the need of custom renderers.
 
 The process for creating custom controls is as follows:
 
@@ -20,7 +20,7 @@ The process for creating custom controls is as follows:
 
 ## Create a custom Toggle bar
 
-The toggle bar control is used to show some options that the user can choose from, for example a filtering mechanism or a light-weight tabbed control..etc, see the screenshot below (should look the same on iOS): 
+The toggle bar control is used to show some options that the user can choose from, for example a filtering mechanism or a light-weight tabbed control..etc, similar to a group of radio buttons, see the screenshot below (should look the same on iOS):
 [screenshot (on Android)]
 
 The behavior of the control is as follows:
@@ -39,7 +39,7 @@ Before creating the Toggles bar control, we need first to create the single Togg
 
 When the label is tapped the selection state is mutated. The visual state is defined by the `TextColor` property of the Label and the `Color` property of the BoxView,
 
-2. Create the bindable properties: `IsSelected`, `SelectedColor`, `UnselectedColor`, `Text` and `FontFamily`. This is the `SelectedColor` along with the backing field:
+2. Create the bindable properties: `IsSelected`, `SelectedColor`, `UnselectedColor`, `Text` and `FontFamily`. This is the `SelectedColor` property along with the [`BindableProperty`](xref:Xamarin.Forms.BindableProperty) backing field:
 
 ```csharp
 public static readonly BindableProperty SelectedColorProperty = BindableProperty.Create(nameof(SelectedColor), typeof(Color), typeof(ToggleButton),
@@ -52,7 +52,7 @@ defaultValue: default(Color), propertyChanged: CustomPropertyChanged);
  }
  ```
  
- > [!NOTE]
+> [!NOTE]
 > A bindable property is a special type of property, where the property's value is tracked by the Xamarin.Forms property system.
 > The process of creating a bindable property is as follows:
 > 1. Create a [`BindableProperty`](xref:Xamarin.Forms.BindableProperty) instance with one of the [`BindableProperty.Create`](xref:Xamarin.Forms.BindableProperty.Create*) method overloads.
@@ -137,7 +137,7 @@ void MutateSelect()
 
 Now the control can be consumed in XAML:
 ```xaml
-<controls:ToggleButton  Text="On" BackgroundColor="Black" UnselectedColor="Gray" SelectedColor="White" SelectionChanged="ToggleButton_SelectionChanged"/>
+<controls:ToggleButton Text="On" BackgroundColor="Black" UnselectedColor="Gray" SelectedColor="White" SelectionChanged="ToggleButton_SelectionChanged"/>
 ```
 
 In the next part you are going to create the ToggleBar control making use of the control you just created.
