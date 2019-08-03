@@ -137,7 +137,7 @@ void MutateSelect()
 ```
 
 ## Consuming the ToggleButton control in XAML
- 1. Add a namespace reference to the custom control in the XAML file:
+ 1. Add a reference to the custom control namespace in the XAML file:
  ```xaml
 xmlns:controls="clr-namespace:CustomControlsSample.CustomControls"
 ```
