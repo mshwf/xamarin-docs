@@ -55,7 +55,7 @@ defaultValue: default(Color), propertyChanged: CustomPropertyChanged);
 > [!NOTE]
 > A bindable property is a special type of property, where the property's value is tracked by the Xamarin.Forms property system. The purpose > of bindable properties is to provide a property system that supports data binding, styles, templates, and values set through parent-child 
 > relationships.
-> The process of creating a bindable property is as follows:
+The process of creating a bindable property is as follows:
 > 1. Create a [`BindableProperty`](xref:Xamarin.Forms.BindableProperty) instance with one of the [`BindableProperty.Create`](xref:Xamarin.Forms.BindableProperty.Create*) method overloads.
 > 2. Define property accessors for the [`BindableProperty`](xref:Xamarin.Forms.BindableProperty) instance.
 >   
