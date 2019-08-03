@@ -101,7 +101,7 @@ private void Render()
 
 }
 ```
-Create `SelectionChanged` event that gets invoked when the label is tapped, and it will notify consumers of the ToggleButton when selection changes:
+Create `SelectionChanged` event that gets invoked when the label is tapped, and it will notify consumers of the ToggleButton (i.e. the ToggleBar control) when selection changes:
 
 `public event EventHandler SelectionChanged;`
 
