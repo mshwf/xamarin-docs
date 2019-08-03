@@ -105,7 +105,7 @@ Create `SelectionChanged` event that gets invoked when the label is tapped, and 
 
 `public event EventHandler SelectionChanged;`
 
-One more step is to call The `MutateSelect` method in the set accessor of the `IsSelected` property:
+When the label is tapped we need to change the selection state of the control, create `MutateSelect` method in the set accessor of the `IsSelected` property, that gets mutated when the label is tapped:
 ```csharp
 public bool IsSelected
 {
