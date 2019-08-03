@@ -138,7 +138,9 @@ void MutateSelect()
 
 Now the control can be consumed in XAML, 
  1. Add a namespace reference to the custom control in the XAML file:
-`xmlns:controls="clr-namespace:CustomControlsSample.CustomControls"`
+ ```xaml
+xmlns:controls="clr-namespace:CustomControlsSample.CustomControls"
+```
  2. Initialize the bindable properties that defines the different states of the control:
 ```xaml
 <controls:ToggleButton Text="On" BackgroundColor="Black" UnselectedColor="Gray" SelectedColor="White" SelectionChanged="ToggleButton_SelectionChanged"/>
