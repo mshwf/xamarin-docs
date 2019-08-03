@@ -103,7 +103,9 @@ private void Render()
 ```
 Create `SelectionChanged` event that gets invoked when the label is tapped, and it will notify consumers of the ToggleButton (i.e. the ToggleBar control) when selection changes:
 
-`public event EventHandler SelectionChanged;`
+```csharp
+public event EventHandler SelectionChanged;
+```
 
 When the label is tapped we need to change the selection state of the control, create `MutateSelect` method and call it in the set accessor of the `IsSelected` property that gets mutated when the label is tapped:
 ```csharp
