@@ -141,7 +141,15 @@ Now the control can be consumed in XAML,
  ```xaml
 xmlns:controls="clr-namespace:CustomControlsSample.CustomControls"
 ```
- 2. Initialize the bindable properties that defines the different states of the control:
+ 2. Initialize the bindable properties that define the states of the control:
 ```xaml
-<controls:ToggleButton Text="On" BackgroundColor="Black" UnselectedColor="Gray" SelectedColor="White" SelectionChanged="ToggleButton_SelectionChanged"/>
+<controls:ToggleButton x:Name="ToggleButton" Text="On" BackgroundColor="Black" UnselectedColor="Gray" SelectedColor="White" SelectionChanged="ToggleButton_SelectionChanged"/>
+```
+3. Attach a handler to the `SelectionChanged` event to handle the selection change in the code-behind file:
+```csharp
+private async void ToggleButton_SelectionChanged(object sender, EventArgs e)
+{
+    string message = ToggleButton.IsSelected ? "ToggleButton is selected" : "ToggleButton is unselected";
+    await DisplayAlert("ToggleButton", message, "OK");
+}
 ```
