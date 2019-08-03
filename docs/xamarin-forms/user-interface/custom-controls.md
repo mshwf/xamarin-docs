@@ -136,12 +136,10 @@ void MutateSelect()
 }
 ```
 
-Now the control can be consumed in XAML:
+Now the control can be consumed in XAML, 
+ 1. Add a namespace reference to the custom control in the XAML file:
+`xmlns:controls="clr-namespace:CustomControlsSample.CustomControls"`
+ 2. Initialize the bindable properties that defines the different states of the control:
 ```xaml
 <controls:ToggleButton Text="On" BackgroundColor="Black" UnselectedColor="Gray" SelectedColor="White" SelectionChanged="ToggleButton_SelectionChanged"/>
 ```
-
-In the next part you are going to create the ToggleBar control making use of the control you just created.
-
-## Toggle bar control
-
