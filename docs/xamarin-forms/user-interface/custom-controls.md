@@ -33,7 +33,7 @@ The behavior of the control is as follows:
 Bindable properties is the foundation of custom controls (For more information about Xamarin.Forms bindable properties, see [Xamarin.Forms Bindable Properties
 ](~/xamarin-forms/xaml/bindable-properties.md))
 
-Every button inside the toggle bar control is a custom control by itself. This documentation will guide you through creating the Toggle button control and the same concepts can be leveraged in the Toggle bar control (see the complete sample), the steps are as follows:
+Every button inside the toggle bar control is a custom control by itself. This documentation will guide you through creating the Toggle button control and the same concepts can be leveraged in the Toggle bar control (see the complete sample), the steps of creating the ToggleButton control are as follows:
 1. Create a subclass from `StackLayout`, name it `ToggleButton`, it holds two children: `Label` and `BoxView`, the following diagram illustrates the control outline:
 ![](custom-controls-images/togglebutton-layout.png "Togle bar control outline")
 
