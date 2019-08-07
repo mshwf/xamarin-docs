@@ -21,6 +21,7 @@ The process for creating custom controls is as follows:
 ## Create a custom Toggle bar
 
 The toggle bar control is used to show some options that the user can choose from, for example a filtering mechanism (similar to a group of radio buttons), or a light-weight tabbed control..etc, see the screenshot below (should look the same on iOS):
+
 [screenshot (on Android)]
 
 The behavior of the control is as follows:
