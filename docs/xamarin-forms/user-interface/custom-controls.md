@@ -90,7 +90,7 @@ private void Render()
 
     Children.Clear();
     Children.Add(button);
-    Children.Add(box);
+    Children.Add(underLine);
     button.GestureRecognizers.Add(new TapGestureRecognizer()
     {
         Command = new Command(() =>
@@ -132,12 +132,12 @@ void MutateSelect()
     if (IsSelected)
     {
         button.TextColor = SelectedColor;
-        box.Color = SelectedColor;
+        underLine.Color = SelectedColor;
     }
     else
     {
         button.TextColor = UnselectedColor;
-        box.Color = BackgroundColor;
+        underLine.Color = BackgroundColor;
     }
 }
 ```
