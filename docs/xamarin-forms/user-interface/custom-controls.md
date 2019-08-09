@@ -40,7 +40,7 @@ Every button inside the toggle bar control is a custom control by itself. This d
 
 When the label is tapped, the selection state is mutated. The visual state is defined by the `TextColor` property of the Label and the `Color` property of the BoxView,
 
-2. Create the bindable properties: `IsSelected`, `SelectedColor`, `UnselectedColor`, `Text` and `FontFamily`. This is the `SelectedColor` property along with the [`BindableProperty`](xref:Xamarin.Forms.BindableProperty) backing field:
+2. Create the bindable properties: `IsSelected`, `SelectedColor`, `UnselectedColor`, `Text`, `FontFamily` and `FontSize`. This is the `SelectedColor` property along with the [`BindableProperty`](xref:Xamarin.Forms.BindableProperty) backing field:
 
 ```csharp
 public static readonly BindableProperty SelectedColorProperty = BindableProperty.Create(nameof(SelectedColor), typeof(Color), typeof(ToggleButton),
@@ -81,8 +81,11 @@ private void Render()
         Text = Text,
         BackgroundColor = BackgroundColor,
         FontFamily = FontFamily,
+        FontSize = FontSize,
         HorizontalTextAlignment = TextAlignment.Center,
         VerticalTextAlignment = TextAlignment.Center,
+        WidthRequest = WidthRequest,
+        HeightRequest = HeightRequest,
         Margin = new Thickness(5)
     };
 
