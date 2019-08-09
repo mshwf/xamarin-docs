@@ -86,7 +86,7 @@ private void Render()
         Margin = new Thickness(5)
     };
 
-    box = new BoxView { HeightRequest = 2, Color = BackgroundColor };
+    underLine = new BoxView { HeightRequest = 2, Color = BackgroundColor };
 
     Children.Clear();
     Children.Add(button);
@@ -103,7 +103,9 @@ private void Render()
 
 }
 ```
-Create `SelectionChanged` event that gets invoked when the label is tapped, and it will notify consumers of the ToggleButton (i.e. the ToggleBar control) when selection changes:
+The `CustomPropertyChanged` is called whenever the bindable property which [`propertyChanged`](xref:Xamarin.Forms.BindableProperty.BindingPropertyChangedDelegate) delegate attached to, change, a change occurs when the property is set when the page first loads. Typically, bindable properties' `propertyChanged` delegate are attached to the same method, when they're responsible for customizing the control's appearance, because we want to make sure all properties are updated once another property change. The `Render` method initializes the control properties, for example the `TextColor` property of the label gets the value of `UnselectedColor` property of the custom control beacause the control is rendered in unselected state, similarly, the box view's color is initialized with the color of the `BackgroundColor` of the `StackLayout` to hide it, it only gets highlited with `SelectedColor` color when the control is selected.
+
+4. Create `SelectionChanged` event that gets invoked when the label is tapped, and it will notify consumers of the ToggleButton (i.e. the ToggleBar control) when selection changes:
 
 ```csharp
 public event EventHandler SelectionChanged;
