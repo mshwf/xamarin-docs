@@ -26,7 +26,7 @@ The TextSwitch control is an on-off control with text that get highlighted when 
 
 The behavior of the control is as follows:
 
-1. The control has selected state and unselected state determined by the `IsSelected` property.
+1. The control has on and off states determined by the `IsOn` property.
 2. The states are visually distinguished through the `SelectedColor` and `UnselectedColor` bindable properties.
 3. When the control is tapped, the selection state is mutated and the text color is updated to the `SelectedColor` or `UnselectedColor`.
 
