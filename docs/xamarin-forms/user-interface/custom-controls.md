@@ -18,7 +18,7 @@ The process for creating custom controls is as follows:
 2. Alter the functionality of the subclass by overriding the default value of the base class’s bindable properties and/or create new bindable properties that will interact with user actions.
 3. Process inputs through the `propertyChanged` delegate of the newly added bindable properties.
 
-## Create a custom Toggle bar
+## Create a custom TextSwitch control
 
 The toggle bar control is used to show some options that the user can choose from, for example a filtering mechanism (similar to a group of radio buttons), or a light-weight tabbed control..etc, see the screenshot below (should look the same on iOS):
 
@@ -26,7 +26,7 @@ The toggle bar control is used to show some options that the user can choose fro
 
 The behavior of the control is as follows:
 
-1. Every button has a selected state and unselected state determined by the `IsSelected` property.
+1. Every button has selected state and unselected state determined by the `IsSelected` property.
 2. The states are visually distinguished through the `SelectedColor` and `UnselectedColor` bindable properties.
 3. The selected items can be obtained through the bindable property `SelectedItems`.
 4. The control supports multi-selection (that’s why it’s `SelectedItems` not `SelectedItem`) by setting the `IsMultiSelect` property to `true` (defaults to `false`).
