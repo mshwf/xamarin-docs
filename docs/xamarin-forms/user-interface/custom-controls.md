@@ -28,7 +28,7 @@ The behavior of the control is as follows:
 
 1. The control has on and off states determined by the `IsOn` property.
 2. The states are visually distinguished through the `OnColor` and `OffColor` bindable properties.
-3. When the control is tapped, the selection state is mutated and the text color is updated to the `OnColor` or `OffColor`.
+3. When the control is tapped, the toggle state is mutated and the text color is updated to the `OnColor` or `OffColor`.
 
 Bindable properties is the foundation of custom controls (For more information about Xamarin.Forms bindable properties, see [Xamarin.Forms Bindable Properties
 ](~/xamarin-forms/xaml/bindable-properties.md))
@@ -37,18 +37,18 @@ The steps of creating the TextSwitch control are as follows:
 1. Create a subclass from `StackLayout`, name it `TextSwitch`, it holds two children: `Label` and `BoxView`, the following diagram illustrates the control outline:
 ![](custom-controls-images/togglebutton-layout.png "Togle bar control outline")
 
-When the label is tapped, the selection state is mutated. The visual state is defined by the `TextColor` property of the Label and the `Color` property of the BoxView,
+When the label is tapped, the toggle state is mutated. The visual state is defined by the `TextColor` property of the Label and the `Color` property of the BoxView,
 
-2. Create the bindable properties: `IsOn`, `OnColor`, `OffColor`, `Text`, `FontFamily` and `FontSize`. This is the `SelectedColor` property along with the [`BindableProperty`](xref:Xamarin.Forms.BindableProperty) backing field:
+2. Create the bindable properties: `IsOn`, `OnColor`, `OffColor`, `Text`, `FontFamily` and `FontSize`. This is the `OnColor` property along with the [`BindableProperty`](xref:Xamarin.Forms.BindableProperty) backing field:
 
 ```csharp
-public static readonly BindableProperty SelectedColorProperty = BindableProperty.Create(nameof(SelectedColor), typeof(Color), typeof(TextSwitch),
+public static readonly BindableProperty OnColorProperty = BindableProperty.Create(nameof(OnColor), typeof(Color), typeof(TextSwitch),
 defaultValue: default(Color), propertyChanged: CustomPropertyChanged);
 
- public Color SelectedColor
+ public Color OnColor
  {
-     get { return (Color)GetValue(SelectedColorProperty); }
-     set { SetValue(SelectedColorProperty, value); }
+     get { return (Color)GetValue(OnColorProperty); }
+     set { SetValue(OnColorProperty, value); }
  }
  ```
  
@@ -63,7 +63,7 @@ The process of creating a bindable property is as follows:
 > For more information about Xamarin.Forms bindable properties, see [Xamarin.Forms Bindable Properties
 > ](~/xamarin-forms/xaml/bindable-properties.md)
 
-3. Attach the `propertyChanged` delegate of the bindable properties to `CustomPropertyChanged` method, that will process inputs from the user, like setting the label's `Text` and `TextColor` properties from the `TextSwitch`'s `Text` and `OffColor` properties respectively, and add a `TapGestureRecognizer` to the Label’s `GestureRecognizers` collection that will mutate the selection state of the `TextSwitch` when the label is tapped.
+3. Attach the `propertyChanged` delegate of the bindable properties to `CustomPropertyChanged` method, that will process inputs from the user, like setting the label's `Text` and `TextColor` properties from the `TextSwitch`'s `Text` and `OffColor` properties respectively, and add a `TapGestureRecognizer` to the Label’s `GestureRecognizers` collection that will mutate the toggle state of the `TextSwitch` when the label is tapped.
 
 ```csharp
 private static void CustomPropertyChanged(BindableObject bindable, object oldValue, object newValue)
@@ -112,13 +112,13 @@ The `CustomPropertyChanged` is called whenever the bindable property, which [`pr
 
 The `Render` method initializes the control properties, for example the `TextColor` property of the label gets the value of `OffColor` property of the custom control beacause the control is rendered in off state, similarly, the `BoxView`'s color is initialized with the color of the `BackgroundColor` of the `StackLayout` to hide it, it only gets highlited with `OnColor` color when the control is on. Setting the `WidthRequest` and `HeightRequest` for both the `Label` and `BoxView` ensures they scale with their parent's size.
 
-4. Create `Toggled` event that gets invoked when the label is tapped, and it will notify consumers of the TextSwitch when selection changes:
+4. Create `Toggled` event that gets invoked when the label is tapped, and it will notify consumers of the TextSwitch when toggle changes:
 
 ```csharp
 public event EventHandler Toggled;
 ```
 
-When the label is tapped we need to change the selection state of the control, create `Toggle` method and call it in the set accessor of the `IsOn` property that gets mutated when the label is tapped:
+When the label is tapped we need to change the toggle state of the control, create `Toggle` method and call it in the set accessor of the `IsOn` property that gets mutated when the label is tapped:
 ```csharp
 public bool IsOn
 {
@@ -131,7 +131,7 @@ public bool IsOn
 }
 ```
 
-The `Toggle` method is where the selection state gets updated visually when the `IsOn` is mutated:
+The `Toggle` method is where the toggle state gets updated visually when the `IsOn` is mutated:
 
 ```csharp
 void Toggle()
@@ -158,7 +158,7 @@ xmlns:controls="clr-namespace:CustomControlsSample.CustomControls"
 ```xaml
 <controls:TextSwitch x:Name="textSwitch" Text="On" BackgroundColor="Black" OffColor="Gray" OnColor="White" Toggled="TextSwitch_Toggled"/>
 ```
-3. Attach a handler to the `Toggled` event to handle the selection change in the code-behind file:
+3. Attach a handler to the `Toggled` event to handle the toggle change in the code-behind file:
 ```csharp
 private async void TextSwitch_Toggled(object sender, EventArgs e)
 {
