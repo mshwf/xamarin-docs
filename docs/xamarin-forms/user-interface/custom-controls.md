@@ -44,7 +44,7 @@ When the label is tapped, the selection state is mutated. The visual state is de
 
 ```csharp
 public static readonly BindableProperty SelectedColorProperty = BindableProperty.Create(nameof(SelectedColor), typeof(Color), typeof(ToggleButton),
-defaultValue: default(Color), propertyChanged: CustomPropertyChanged);
+defaultValue: Color.Default, propertyChanged: CustomPropertyChanged);
 
  public Color SelectedColor
  {
