@@ -156,19 +156,21 @@ void MutateSelect()
 ```
 
 ## Consuming the ToggleButton control in XAML
- 1. Add a reference to the custom control namespace in the XAML file:
- ```xaml
-xmlns:controls="clr-namespace:CustomControlsSample.CustomControls"
-```
- 2. Initialize the bindable properties that define the states of the control:
+The `ToggleButton` control can be referenced in XAML in the .NET Standard library project by declaring a namespace for its location and using the namespace prefix on the control element. The following code example shows how the `ToggleButton` control can be consumed by a XAML page:
 ```xaml
-<controls:ToggleButton x:Name="ToggleButton" Text="On" BackgroundColor="Black" UnselectedColor="Gray" SelectedColor="White" SelectionChanged="ToggleButton_SelectionChanged"/>
+<ContentPage ...
+    xmlns:controls="clr-namespace:CustomControlsSample.CustomControls"
+    ...>
+    ...
+    <controls:ToggleButton x:Name="toggleButton" Text="On" BackgroundColor="Black" UnselectedColor="Gray" SelectedColor="White" SelectionChanged="ToggleButton_SelectionChanged"/>
+    ...
+</ContentPage>
 ```
-3. Attach a handler to the `SelectionChanged` event to handle the selection change in the code-behind file:
+Attach a handler to the `SelectionChanged` event to handle the selection change in the code-behind file:
 ```csharp
 private async void ToggleButton_SelectionChanged(object sender, EventArgs e)
 {
-    string message = ToggleButton.IsSelected ? "ToggleButton is selected" : "ToggleButton is unselected";
+    string message = toggleButton.IsSelected ? "ToggleButton is selected" : "ToggleButton is unselected";
     await DisplayAlert("ToggleButton", message, "OK");
 }
 ```
