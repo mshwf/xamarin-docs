@@ -64,6 +64,11 @@ The process of creating a bindable property is as follows:
 > For more information about Xamarin.Forms bindable properties, see [Xamarin.Forms Bindable Properties
 > ](~/xamarin-forms/xaml/bindable-properties.md)
 
+> [!NOTE]
+> There are two types of custom bindable properties:
+> 1. Bindable properties that are passed down to the built-in bindable properties of child elements, like `Text` bindable property of the `ToggleButton` custom control, that is passed down to the `Text` bindable property of the `Label` control.
+> 2. Bindable properties that are specific to the custom control itslef and not owned exclusively by any of the child elements, like the `IsSelected` bindable property, the more behevioral customization required to the custom control, the more of these bindable properties are needed.
+
 3. Attach the `propertyChanged` delegate of the bindable properties to `CustomPropertyChanged` method, that will process inputs from the user, like setting the label's `Text` and `TextColor` properties from the `ToggleButton`'s `Text` and `UnselectedColor` properties respectively, and add a `TapGestureRecognizer` to the Label’s `GestureRecognizers` collection that will mutate the selection state of the toggle button when the label is tapped.
 
 ```csharp
