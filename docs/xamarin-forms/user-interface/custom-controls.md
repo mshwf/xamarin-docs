@@ -12,12 +12,6 @@ ms.date: 05/23/2019
 
 The process of building UI elements requires, at some point, some customizations to give the unique feel and look to the application and to extend the functionality of existing controls. Whether the customization is just overriding the default `TextColor` of the `Entry` or creating a brand new control with new look and behavior, building custom controls can provide the simple solution to achieve that, without the need of custom renderers.
 
-The process for creating custom controls is as follows:
-
-1. Create a subclass of the view you want to extend or modify.
-2. Alter the functionality of the subclass by overriding the default value of the base class’s bindable properties and/or create new bindable properties that will interact with user actions.
-3. Process inputs through the `propertyChanged` delegate of the newly added bindable properties.
-
 ## Create a custom Toggle bar
 
 The toggle bar control is used to show some options that the user can choose from, for example a filtering mechanism (similar to a group of radio buttons), or a light-weight tabbed control..etc, see the screenshot below (should look the same on iOS):
@@ -34,13 +28,26 @@ The behavior of the control is as follows:
 Bindable properties is the foundation of custom controls (For more information about Xamarin.Forms bindable properties, see [Xamarin.Forms Bindable Properties
 ](~/xamarin-forms/xaml/bindable-properties.md))
 
-Every button inside the toggle bar control is a custom control by itself. This documentation will guide you through creating the Toggle button control and the same concepts can be leveraged in the Toggle bar control (see the complete sample), the steps of creating the ToggleButton control are as follows:
-1. Create a subclass from `StackLayout`, name it `ToggleButton`, it holds two children: `Label` and `BoxView`, the following diagram illustrates the control outline:
+Every button inside the toggle bar control is a custom control by itself. This article will guide you through creating the ToggleButton control and the same concepts can be leveraged in the ToggleBar control (see the complete sample).
+
+The process for creating custom controls is as follows:
+
+1. [Create](#Create_Subclass_of_the_View_You_Want_To_Extend) a subclass of the view you want to extend or modify.
+2. [Alter](#Alter_the_Functionality_of_the_Subclass) the functionality of the subclass by overriding the default value of the base class’s bindable properties and/or create new bindable properties that will interact with user actions.
+3. [Process](#Process_Inputs_Through_the_propertyChanged_Delegate) inputs through the `propertyChanged` delegate of the newly added bindable properties.
+
+<a name="Create_Subclass_of_the_View_You_Want_To_Extend" />
+## Create a Subclass of The View You Want to Extend
+Create a subclass from `StackLayout`, name it `ToggleButton`, it holds two children: `Label` and `BoxView`, the following diagram illustrates the control outline:
 ![](custom-controls-images/togglebutton-layout.png "Togle bar control outline")
 
 When the label is tapped, the selection state is mutated. The visual state is defined by the `TextColor` property of the Label and the `Color` property of the BoxView,
 
-2. Create the bindable properties: `IsSelected`, `SelectedColor`, `UnselectedColor`, `Text`, `FontFamily` and `FontSize`. This is the `SelectedColor` property along with the [`BindableProperty`](xref:Xamarin.Forms.BindableProperty) backing field:
+<a name="Alter_the_Functionality_of_the_Subclass" />
+
+## Alter the Functionality of the Subclass
+
+Create the bindable properties: `IsSelected`, `SelectedColor`, `UnselectedColor`, `Text`, `FontFamily` and `FontSize`. This is the `SelectedColor` property along with the [`BindableProperty`](xref:Xamarin.Forms.BindableProperty) backing field:
 
 ```csharp
 public static readonly BindableProperty SelectedColorProperty = BindableProperty.Create(nameof(SelectedColor), typeof(Color), typeof(ToggleButton),
@@ -69,7 +76,11 @@ The process of creating a bindable property is as follows:
 > 1. Bindable properties that are passed down to the built-in bindable properties of child elements, like `Text` bindable property of the `ToggleButton` custom control, that is passed down to the `Text` bindable property of the `Label` control.
 > 2. Bindable properties that are specific to the custom control itself and not owned exclusively by any of the child elements, like the `IsSelected` bindable property. The more behavioral customization required to the custom control, the more of these bindable properties are needed.
 
-3. Attach the `propertyChanged` delegate of the bindable properties to `CustomPropertyChanged` method, that will process inputs from the user, like setting the label's `Text` and `TextColor` properties from the `ToggleButton`'s `Text` and `UnselectedColor` properties respectively, and add a `TapGestureRecognizer` to the Label’s `GestureRecognizers` collection that will mutate the selection state of the toggle button when the label is tapped.
+<a name="Process_Inputs_Through_the_propertyChanged_Delegate" />
+
+## Process Inputs Through the propertyChanged Delegate
+
+Attach the `propertyChanged` delegate of the bindable properties to `CustomPropertyChanged` method, that will process inputs from the user, like setting the label's `Text` and `TextColor` properties from the `ToggleButton`'s `Text` and `UnselectedColor` properties respectively, and add a `TapGestureRecognizer` to the Label’s `GestureRecognizers` collection that will mutate the selection state of the toggle button when the label is tapped.
 
 ```csharp
 private static void CustomPropertyChanged(BindableObject bindable, object oldValue, object newValue)
