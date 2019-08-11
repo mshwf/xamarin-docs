@@ -166,6 +166,25 @@ The `ToggleButton` control can be referenced in XAML in the .NET Standard librar
     ...
 </ContentPage>
 ```
+The following code example shows how the `ToggleButton` control can be consumed by a C# page:
+```csharp
+public class MainPage : ContentPage
+{
+  public MainPage ()
+  {
+    var toggleButton = new ToggleButton
+    {
+       Text = "On",
+       BackgroundColor = Color.Black,
+       UnselectedColor = Color.Gray,
+       SelectedColor = Color.White,
+    };
+   toggleButton.SelectionChanged += ToggleButton_SelectionChanged;
+   Content = toggleButton;
+  }
+}
+```
+
 Attach a handler to the `SelectionChanged` event to handle the selection change in the code-behind file:
 ```csharp
 private async void ToggleButton_SelectionChanged(object sender, EventArgs e)
