@@ -43,7 +43,6 @@ The process for creating custom controls is as follows:
 Create a subclass from `StackLayout`, name it `ToggleButton`, it holds two children: `Label` and `BoxView`, the following diagram illustrates the control outline:
 
 ![](custom-controls-images/togglebutton-layout.png "Togle bar control outline")
-
 When the label is tapped, the selection state is mutated. The visual state is defined by the `TextColor` property of the Label and the `Color` property of the BoxView,
 
 <a name="Alter_the_Functionality_of_the_Subclass" />
