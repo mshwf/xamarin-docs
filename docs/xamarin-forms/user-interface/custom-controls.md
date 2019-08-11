@@ -155,7 +155,7 @@ void MutateSelect()
 }
 ```
 
-## Consuming the ToggleButton control in XAML
+## Consuming the ToggleButton control
 The `ToggleButton` control can be referenced in XAML in the .NET Standard library project by declaring a namespace for its location and using the namespace prefix on the control element. The following code example shows how the `ToggleButton` control can be consumed by a XAML page:
 ```xaml
 <ContentPage ...
