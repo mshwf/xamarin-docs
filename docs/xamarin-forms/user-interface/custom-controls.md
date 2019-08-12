@@ -132,7 +132,7 @@ The `CustomPropertyChanged` is called whenever the bindable property, which [`pr
 
 The `Render` method initializes the control properties, for example the `TextColor` property of the label gets the value of `UnselectedColor` property of the custom control beacause the control is rendered in unselected state, similarly, the `BoxView`'s color is initialized with the color of the `BackgroundColor` of the `StackLayout` to hide it, it only gets highlited with `SelectedColor` color when the control is selected. Setting the `WidthRequest` and `HeightRequest` for the `Label` and `HeightRequest` for the `BoxView` ensures they scale with the `StackLayout` size.
 
-Create `SelectionChanged` event that gets invoked when the label is tapped, and it will notify consumers of the ToggleButton (i.e. the ToggleBar control) when selection changes:
+Create `SelectionChanged` event that gets invoked when the label is tapped, to notify consumers of the ToggleButton (i.e. the ToggleBar control) when selection changes:
 
 ```csharp
 public event EventHandler SelectionChanged;
