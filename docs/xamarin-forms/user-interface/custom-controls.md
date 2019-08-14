@@ -43,7 +43,7 @@ Create a subclass from `StackLayout`, name it `ToggleButton`, it holds two child
 
 ![](custom-controls-images/togglebutton-layout.png "Togle bar control outline")
 
-When the label is tapped, the selection state is mutated. The visual state is defined by the `TextColor` property of the Label and the `Color` property of the BoxView.
+When the `Label` is tapped, the selection state is mutated. The visual state is defined by the `TextColor` property of the `Label` and the `Color` property of the `BoxView`.
 
 <a name="Alter_the_Functionality_of_the_Subclass" />
 
@@ -82,7 +82,7 @@ The process of creating a bindable property is as follows:
 
 ## Process Inputs Through the propertyChanged Delegate
 
-Attach the `propertyChanged` delegate of the bindable properties: `SelectedColor`, `UnselectedColor`, `Text`, `FontFamily` and `FontSize`, to `CustomPropertyChanged` method, that will process inputs from the user, like setting the label's `Text` and `TextColor` properties from the `ToggleButton`'s `Text` and `UnselectedColor` properties respectively, and add a `TapGestureRecognizer` to the Label’s `GestureRecognizers` collection that will mutate the selection state of the toggle button when the label is tapped.
+Attach the `propertyChanged` delegate of the bindable properties: `SelectedColor`, `UnselectedColor`, `Text`, `FontFamily` and `FontSize`, to `CustomPropertyChanged` method, that will process inputs from the user, like setting the `Label`'s `Text` and `TextColor` properties from the `ToggleButton`'s `Text` and `UnselectedColor` properties respectively, and add a `TapGestureRecognizer` to the `Label`’s `GestureRecognizers` collection that will mutate the selection state of the toggle button when the `Label` is tapped.
 
 ```csharp
 private static void CustomPropertyChanged(BindableObject bindable, object oldValue, object newValue)
@@ -137,7 +137,7 @@ Create `SelectionChanged` event that gets invoked when the label is tapped, to n
 public event EventHandler SelectionChanged;
 ```
 
-When the label is tapped we need to change the selection state of the control, create `MutateSelect` method and call it in the set accessor of the `IsSelected` property that gets mutated when the label is tapped:
+When the `Label` is tapped we need to change the selection state of the control, create `MutateSelect` method and call it in the set accessor of the `IsSelected` property that gets mutated when the `Label` is tapped:
 ```csharp
 public bool IsSelected
 {
