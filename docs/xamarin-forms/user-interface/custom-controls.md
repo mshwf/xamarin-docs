@@ -14,7 +14,7 @@ The process of building UI elements requires, at some point, some customizations
 
 ## Create a custom Toggle bar
 
-The toggle bar control is used to show some options that the user can choose from, for example a filtering mechanism (similar to a group of radio buttons), or a light-weight tabbed control..etc, see the screenshot below (should look the same on iOS):
+The `ToggleBar` control is used to show some options that the user can choose from, for example a filtering mechanism (similar to a group of radio buttons), or a light-weight tabbed control..etc, see the screenshot below (should look the same on iOS):
 
 [screenshot (on Android)]
 
@@ -27,7 +27,7 @@ The behavior of the control is as follows:
 
 Bindable properties is the foundation of custom controls (For more information about Xamarin.Forms bindable properties, see [Xamarin.Forms Bindable Properties](~/xamarin-forms/xaml/bindable-properties.md)).
 
-Every button inside the toggle bar control is a custom control by itself. This article will guide you through creating the ToggleButton control and the same concepts can be leveraged in the ToggleBar control (see the complete sample).
+Every button inside the `ToggleBar` control is a custom control by itself. This article will guide you through creating the `ToggleButton` control and the same concepts can be leveraged in the `ToggleBar` control (see the complete sample).
 
 The process for creating custom controls is as follows:
 
@@ -82,7 +82,7 @@ The process of creating a bindable property is as follows:
 
 ## Process Inputs Through the propertyChanged Delegate
 
-Attach the `propertyChanged` delegate of the bindable properties: `SelectedColor`, `UnselectedColor`, `Text`, `FontFamily` and `FontSize`, to `CustomPropertyChanged` method, that will process inputs from the user, like setting the `Label`'s `Text` and `TextColor` properties from the `ToggleButton`'s `Text` and `UnselectedColor` properties respectively, and add a `TapGestureRecognizer` to the `Label`’s `GestureRecognizers` collection that will mutate the selection state of the toggle button when the `Label` is tapped.
+Attach the `propertyChanged` delegate of the bindable properties: `SelectedColor`, `UnselectedColor`, `Text`, `FontFamily` and `FontSize`, to `CustomPropertyChanged` method, that will process inputs from the user, like setting the `Label`'s `Text` and `TextColor` properties from the `ToggleButton`'s `Text` and `UnselectedColor` properties respectively, and add a `TapGestureRecognizer` to the `Label`’s `GestureRecognizers` collection that will mutate the selection state of the `ToggleButton` when the `Label` is tapped.
 
 ```csharp
 private static void CustomPropertyChanged(BindableObject bindable, object oldValue, object newValue)
@@ -131,7 +131,7 @@ The `CustomPropertyChanged` is called whenever the bindable property, which [`pr
 
 The `Render` method initializes the control properties, for example the `TextColor` property of the `Label` gets the value of `UnselectedColor` property of the custom control beacause the control is rendered in unselected state, similarly, the `BoxView`'s `Color` property is initialized with the value of the `BackgroundColor` of the `StackLayout` to hide it, it only gets highlited with `SelectedColor` value when the control is selected. Setting the `WidthRequest` and `HeightRequest` for the `Label` and `HeightRequest` for the `BoxView` ensures they scale with the `StackLayout` size.
 
-Create `SelectionChanged` event that gets invoked when the `Label` is tapped, to notify consumers of the ToggleButton (i.e. the ToggleBar control) when selection changes:
+Create `SelectionChanged` event that gets invoked when the `Label` is tapped, to notify consumers of the `ToggleButton` (i.e. the `ToggleBar` control) when selection changes:
 
 ```csharp
 public event EventHandler SelectionChanged;
