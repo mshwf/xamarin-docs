@@ -25,7 +25,7 @@ The behavior of the control is as follows:
 3. The selected items can be obtained through the bindable property `SelectedItems`.
 4. The control supports multi-selection (that’s why it’s `SelectedItems` not `SelectedItem`) by setting the `IsMultiSelect` property to `true` (defaults to `false`).
 
-Bindable properties is the foundation of custom controls (For more information about Xamarin.Forms bindable properties, see [Xamarin.Forms Bindable Properties](~/xamarin-forms/xaml/bindable-properties.md)).
+Bindable properties are the foundation of custom controls (For more information about Xamarin.Forms bindable properties, see [Xamarin.Forms Bindable Properties](~/xamarin-forms/xaml/bindable-properties.md)).
 
 Every button inside the `ToggleBar` control is a custom control by itself. This article will guide you through creating the `ToggleButton` control and the same concepts can be leveraged in the `ToggleBar` control (see the complete sample).
 
