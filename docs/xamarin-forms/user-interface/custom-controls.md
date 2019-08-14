@@ -8,11 +8,11 @@ author: mshwf
 ms.author: crdun
 ms.date: 05/23/2019
 ---
-# Create a custom control with Xamarin.Forms
+# Create a Custom Control with Xamarin.Forms
 
 The process of building UI elements requires, at some point, some customizations to give the unique feel and look to the application and to extend the functionality of existing controls. Whether the customization is just overriding the default `TextColor` of the `Entry` or creating a brand new control with new look and behavior, building custom controls can provide the simple solution to achieve that, without the need of custom renderers.
 
-## Create a custom Toggle bar
+## Create a Custom ToggleBar Control
 
 The `ToggleBar` control is used to show some options that the user can choose from, for example a filtering mechanism (similar to a group of radio buttons), or a light-weight tabbed control..etc, see the screenshot below (should look the same on iOS):
 
@@ -37,7 +37,7 @@ The process for creating custom controls is as follows:
 
 <a name="Create_Subclass_of_the_View_You_Want_To_Extend" />
 
-## Create a Subclass of the View You Want to Extend
+## Create a Subclass of the View you Want to Extend
 
 Create a subclass from `StackLayout`, name it `ToggleButton`, it holds two children: `Label` and `BoxView`, the following diagram illustrates the control outline:
 
@@ -168,7 +168,7 @@ void MutateSelect()
 }
 ```
 
-## Consuming the ToggleButton control
+## Consuming the Custom Control
 The `ToggleButton` control can be referenced in XAML in the .NET Standard library project by declaring a namespace for its location and using the namespace prefix on the control element. The following code example shows how the `ToggleButton` control can be consumed by a XAML page:
 ```xaml
 <ContentPage ...
