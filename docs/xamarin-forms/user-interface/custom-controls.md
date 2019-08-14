@@ -25,8 +25,7 @@ The behavior of the control is as follows:
 3. The selected items can be obtained through the bindable property `SelectedItems`.
 4. The control supports multi-selection (that’s why it’s `SelectedItems` not `SelectedItem`) by setting the `IsMultiSelect` property to `true` (defaults to `false`).
 
-Bindable properties is the foundation of custom controls (For more information about Xamarin.Forms bindable properties, see [Xamarin.Forms Bindable Properties
-](~/xamarin-forms/xaml/bindable-properties.md))
+Bindable properties is the foundation of custom controls (For more information about Xamarin.Forms bindable properties, see [Xamarin.Forms Bindable Properties](~/xamarin-forms/xaml/bindable-properties.md))
 
 Every button inside the toggle bar control is a custom control by itself. This article will guide you through creating the ToggleButton control and the same concepts can be leveraged in the ToggleBar control (see the complete sample).
 
@@ -125,12 +124,12 @@ private void Render()
 
 }
 ```
-The `CustomPropertyChanged` is called whenever the bindable property, which [`propertyChanged`](xref:Xamarin.Forms.BindableProperty.BindingPropertyChangedDelegate) delegate is attached to, changes, a change occurs when the property is set when the custom control is initialized. Typically, bindable properties' `propertyChanged` delegate are attached to the same method, when they're responsible for customizing the control's appearance, because we want to make sure all properties are updated once another property changes. The `IsSelected` bindable property isn't attached to a `propertyChanged` delegate beacuse no UI customization is required based on its initial value, but if the value of the `IsSelected` property is set, for example, from data binding, then `propertyChanged` is required to initialize the control with the correct state based on the `IsSelected` property value, in this tutorial, the control is always initialized in unselected state (`IsSelected` value is `false`).
+The `CustomPropertyChanged` is called whenever the bindable property, which [`propertyChanged`](xref:Xamarin.Forms.BindableProperty.BindingPropertyChangedDelegate) delegate is attached to, changes, a change occurs when the property is set when the custom control is initialized. Typically, bindable properties' `propertyChanged` delegate are attached to the same method, when they're responsible for customizing the control's appearance, because we want to make sure all properties are updated once another property changes. The `IsSelected` bindable property isn't attached to a `propertyChanged` delegate beacuse no UI customization is required based on its initial value, but if the value of the `IsSelected` property is set, for example, from data binding, then `propertyChanged` is required to initialize the control with the correct state based on the `IsSelected` property value. In this tutorial, the control is always initialized in unselected state (`IsSelected` value is `false`).
 
 > [!NOTE]
 > When the custom control is initialized, `propertyChanged` delegate is called in the same order as the properties initialization order in XAML (or code), so for properties attached to the same delegate, the last call to the delegate handler is where all properties have been set.
 
-The `Render` method initializes the control properties, for example the `TextColor` property of the label gets the value of `UnselectedColor` property of the custom control beacause the control is rendered in unselected state, similarly, the `BoxView`'s color is initialized with the color of the `BackgroundColor` of the `StackLayout` to hide it, it only gets highlited with `SelectedColor` color when the control is selected. Setting the `WidthRequest` and `HeightRequest` for the `Label` and `HeightRequest` for the `BoxView` ensures they scale with the `StackLayout` size.
+The `Render` method initializes the control properties, for example the `TextColor` property of the label gets the value of `UnselectedColor` property of the custom control beacause the control is rendered in unselected state, similarly, the `BoxView`'s `Color` property is initialized with the value of the `BackgroundColor` of the `StackLayout` to hide it, it only gets highlited with `SelectedColor` value when the control is selected. Setting the `WidthRequest` and `HeightRequest` for the `Label` and `HeightRequest` for the `BoxView` ensures they scale with the `StackLayout` size.
 
 Create `SelectionChanged` event that gets invoked when the label is tapped, to notify consumers of the ToggleButton (i.e. the ToggleBar control) when selection changes:
 
