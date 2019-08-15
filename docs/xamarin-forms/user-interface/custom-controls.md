@@ -10,7 +10,7 @@ ms.date: 05/23/2019
 ---
 # Create a Custom Control with Xamarin.Forms
 
-The process of building UI elements requires, at some point, some customizations to give the unique feel and look to the application and to extend the functionality of existing controls. Whether the customization is just overriding the default `TextColor` of the `Entry` or creating a brand new control with new look and behavior, building custom controls can provide the simple solution to achieve that, without the need of custom renderers.
+The process of building UI elements requires, at some point, some customizations to give the unique feel and look to the application and to extend the functionality of existing controls. Whether the customization is just overriding the default `TextColor` of the `Entry` control or creating a brand new control with new look and behavior, building custom controls can provide the simple solution to achieve that, without the need of custom renderers.
 
 ## Create a Custom ToggleBar Control
 
@@ -20,10 +20,10 @@ The `ToggleBar` control is used to show some options that the user can choose fr
 
 The behavior of the control is as follows:
 
-1. Every button has a selected state and unselected state determined by the `IsSelected` property.
+1. Every button has a selected state and unselected state determined by the `IsSelected` bindable property.
 2. The states are visually distinguished through the `SelectedColor` and `UnselectedColor` bindable properties.
 3. The selected items can be obtained through the bindable property `SelectedItems`.
-4. The control supports multi-selection (that’s why it’s `SelectedItems` not `SelectedItem`) by setting the `IsMultiSelect` property to `true` (defaults to `false`).
+4. The control supports multi-selection (that’s why it’s `SelectedItems` not `SelectedItem`) by setting the `IsMultiSelect` bindable property to `true` (defaults to `false`).
 
 Bindable properties are the foundation of custom controls (For more information about Xamarin.Forms bindable properties, see [Xamarin.Forms Bindable Properties](~/xamarin-forms/xaml/bindable-properties.md)).
 
@@ -74,7 +74,7 @@ The process of creating a bindable property is as follows:
 > ](~/xamarin-forms/xaml/bindable-properties.md)
 
 > [!NOTE]
-> There are two types of custom bindable properties:
+> There are two types of custom bindable properties in custom controls:
 > 1. Bindable properties that are passed down to the built-in bindable properties of child elements, like `Text` bindable property of the `ToggleButton` custom control, that is passed down to the `Text` bindable property of the `Label` control.
 > 2. Bindable properties that are specific to the custom control itself and not owned exclusively by any of the child elements, like the `IsSelected` bindable property. The more behavioral customization required to the custom control, the more of these bindable properties are needed.
 
@@ -82,7 +82,7 @@ The process of creating a bindable property is as follows:
 
 ## Process Inputs Through the propertyChanged Delegate
 
-Attach the `propertyChanged` delegate of the bindable properties: `SelectedColor`, `UnselectedColor`, `Text`, `FontFamily` and `FontSize`, to `CustomPropertyChanged` method, that will process inputs from the user, like setting the `Label`'s `Text` and `TextColor` properties from the `ToggleButton`'s `Text` and `UnselectedColor` properties respectively, and add a `TapGestureRecognizer` to the `Label`’s `GestureRecognizers` collection that will mutate the selection state of the `ToggleButton` when the `Label` is tapped.
+Attach the `propertyChanged` delegate of the bindable properties: `SelectedColor`, `UnselectedColor`, `Text`, `FontFamily` and `FontSize`, to `CustomPropertyChanged` method, that will process inputs from the user, like setting the `Label`'s `Text` and `TextColor` properties from the `ToggleButton`'s `Text` and `UnselectedColor` properties respectively, and add a [`TapGestureRecognizer`](xref:Xamarin.Forms.TapGestureRecognizer) to the `Label`’s `GestureRecognizers` collection that will mutate the selection state of the `ToggleButton` when the `Label` is tapped. The `TapGestureRecognizer` provides two approaches for handling the tap action: by the [`Tapped`](xref:Xamarin.Forms.TapGestureRecognizer.Tapped) event, or by the [`Command`](xref:Xamarin.Forms.TapGestureRecognizer.Command) property. For more information about the tap gesture recognizer, see [Adding a tap gesture recognizer](~/xamarin-forms/app-fundamentals/gestures/tap.md).
 
 ```csharp
 private static void CustomPropertyChanged(BindableObject bindable, object oldValue, object newValue)
