@@ -21,7 +21,7 @@ The `ToggleBar` control is used to show some options that the user can choose fr
 The behavior of the control is as follows:
 
 1. Every button has a selected state and an unselected state determined by the `IsSelected` bindable property.
-2. The states are visually distinguished through the `SelectedColor` and `UnselectedColor` bindable properties.
+2. The states are visually distinguished through the `SelectedColor` and the `UnselectedColor` bindable properties.
 3. The selected items can be obtained through the bindable property `SelectedItems`.
 4. The control supports multi-selection (that’s why it’s `SelectedItems` not `SelectedItem`) by setting the `IsMultiSelect` bindable property to `true` (defaults to `false`).
 
@@ -32,7 +32,7 @@ Every button inside the `ToggleBar` control is a custom control by itself. This 
 The process for creating custom controls is as follows:
 
 1. [Create](#Create_Subclass_of_the_View_You_Want_To_Extend) a subclass of the view you want to extend or modify.
-2. [Alter](#Alter_the_Functionality_of_the_Subclass) the functionality of the subclass by overriding the default value of the base class’s bindable properties and/or create new bindable properties that will interact with user actions.
+2. [Alter](#Alter_the_Functionality_of_the_Subclass) the functionality of the subclass by overriding the default values of the base class’s bindable properties and/or create new bindable properties that will interact with user actions.
 3. [Process](#Process_Inputs_Through_the_propertyChanged_Delegate) inputs through the `propertyChanged` delegate of the newly added bindable properties.
 
 <a name="Create_Subclass_of_the_View_You_Want_To_Extend" />
@@ -206,3 +206,12 @@ private async void ToggleButton_SelectionChanged(object sender, EventArgs e)
     await DisplayAlert("ToggleButton", message, "OK");
 }
 ```
+
+## Summary
+
+This article has demonstrated how to create a custom control in Xamarin.Forms, enabling developers to create new controls with new look and behavior, in the .NET standard project, without creating custom renderers. With the rich set of the layouts and the [Animation](~/xamarin-forms/user-interface/animation.md) API in Xamarin.Forms, you can even create more sophisticated and appealing controls.
+
+## Related Links
+
+- [Xamarin.Forms Bindable Properties](~/xamarin-forms/xaml/bindable-properties.md)
+- [CustomControlsSample (sample)](https://docs.microsoft.com/samples/xamarin/xamarin-forms-samples/CustomControlsSample)
