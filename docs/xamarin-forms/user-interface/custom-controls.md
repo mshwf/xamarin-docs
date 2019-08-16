@@ -209,7 +209,7 @@ private async void ToggleButton_SelectionChanged(object sender, EventArgs e)
 
 ## Summary
 
-This article has demonstrated how to create a custom control in Xamarin.Forms, enabling developers to create new controls with new look and behavior, in the .NET standard project, without creating custom renderers. With the rich set of the layouts and the [Animation](~/xamarin-forms/user-interface/animation.md) API in Xamarin.Forms, you can even create more sophisticated and appealing controls.
+This article has demonstrated how to create a custom control in Xamarin.Forms, enabling developers to create new controls with new look and behavior, in the .NET standard project, without creating custom renderers. With the rich set of the [layouts](~/xamarin/xamarin-forms/user-interface/layouts.md) and the [Animation](~/xamarin-forms/user-interface/animation.md) API in Xamarin.Forms, you can even create more sophisticated and appealing controls.
 
 ## Related Links
 
