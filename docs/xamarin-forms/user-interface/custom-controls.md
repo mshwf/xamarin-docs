@@ -74,7 +74,7 @@ The process of creating a bindable property is as follows:
 > ](~/xamarin-forms/xaml/bindable-properties.md)
 
 > [!NOTE]
-> There are two types of custom bindable properties in custom controls:
+> Custom bindable properties in custom controls can be categorized into two types:
 > 1. Bindable properties that are passed down to the built-in bindable properties of child elements, like `Text` bindable property of the `ToggleButton` custom control, that is passed down to the `Text` bindable property of the `Label` control.
 > 2. Bindable properties that are specific to the custom control itself and not owned exclusively by any of the child elements, like the `IsSelected` bindable property. The more behavioral customization required to the custom control, the more of these bindable properties are needed.
 
