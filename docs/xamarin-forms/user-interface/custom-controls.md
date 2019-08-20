@@ -39,7 +39,7 @@ The process for creating custom controls is as follows:
 
 ## Create a Subclass of the View you Want to Extend
 
-Create a subclass from `StackLayout`, name it `ToggleButton`, it holds two children: `Label` and `BoxView`, the following diagram illustrates the control outline:
+Create a subclass from `StackLayout` in the .NET Standard library project, name it `ToggleButton`, it holds two children: `Label` and `BoxView`, the following diagram illustrates the control outline:
 
 ![](custom-controls-images/togglebutton-layout.png "Togle bar control outline")
 
@@ -209,7 +209,7 @@ private async void ToggleButton_SelectionChanged(object sender, EventArgs e)
 
 ## Summary
 
-This article has demonstrated how to create a custom control in Xamarin.Forms, enabling developers to create new controls with new look and behavior, in the .NET standard project, without creating custom renderers. With the rich set of the [layouts](~/xamarin/xamarin-forms/user-interface/layouts.md) and the [Animation](~/xamarin-forms/user-interface/animation.md) API in Xamarin.Forms, you can even create more sophisticated and appealing controls.
+This article has demonstrated how to create a custom control in Xamarin.Forms, enabling developers to create new controls with new look and behavior, in the .NET Standard library project, without creating custom renderers. With the rich set of the [layouts](~/xamarin/xamarin-forms/user-interface/layouts.md) and the [Animation](~/xamarin-forms/user-interface/animation.md) API in Xamarin.Forms, you can even create more sophisticated and appealing controls.
 
 ## Related Links
 
