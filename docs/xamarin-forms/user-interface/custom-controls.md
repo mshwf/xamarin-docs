@@ -20,7 +20,7 @@ The `ToggleBar` control is used to show some options that the user can choose fr
 
 The behavior of the control is as follows:
 
-1. Every button has a selected state and an unselected state determined by the `IsSelected` bindable property.
+1. Every button in the control has a selected state and an unselected state determined by the `IsSelected` bindable property.
 2. The states are visually distinguished through the `SelectedColor` and the `UnselectedColor` bindable properties.
 3. The selected items can be obtained through the bindable property `SelectedItems`.
 4. The control supports multi-selection (that’s why it’s `SelectedItems` not `SelectedItem`) by setting the `IsMultiSelect` bindable property to `true` (defaults to `false`).
