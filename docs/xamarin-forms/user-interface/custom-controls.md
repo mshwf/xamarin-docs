@@ -43,7 +43,7 @@ Create a subclass from `StackLayout` in the .NET Standard library project, name 
 
 ![](custom-controls-images/togglebutton-layout.png "Togle bar control outline")
 
-When the `Label` is tapped, the selection state is mutated. The visual state is defined by the `TextColor` property of the `Label` and the `Color` property of the `BoxView`.
+When the `Label` is tapped, the selection state is mutated. The visual state is defined by the [`TextColor`](xref:Xamarin.Forms.Label.TextColor) property of the `Label` and the [`Color`](xref:Xamarin.Forms.BoxView.Color) property of the `BoxView`.
 
 <a name="Alter_the_Functionality_of_the_Subclass" />
 
