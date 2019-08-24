@@ -10,7 +10,7 @@ ms.date: 05/23/2019
 ---
 # Create a Custom Control with Xamarin.Forms
 
-The process of building UI elements requires, at some point, some customizations to give the unique feel and look to the application and to extend the functionality of existing controls. Whether the customization is just overriding the default `TextColor` of the `Entry` control or creating a brand new control with new look and behavior, building custom controls can provide the simple solution to achieve that, without the need of custom renderers.
+The process of building UI elements requires, at some point, some customizations to give the unique feel and look to the application and to extend the functionality of existing controls. Whether the customization is just overriding the default [`TextColor`](xref:Xamarin.Forms.Entry.TextColor) of the [`Entry`](xref:Xamarin.Forms.Entry) control or creating a brand new control with new look and behavior, building custom controls can provide the simple solution to achieve that, without the need of custom renderers.
 
 ## Create a Custom ToggleBar Control
 
