@@ -39,7 +39,7 @@ The process for creating custom controls is as follows:
 
 ## Create a Subclass of the View you Want to Extend
 
-Create a subclass from `StackLayout` in the .NET Standard library project, name it `ToggleButton`, it holds two children: `Label` and `BoxView`, the following diagram illustrates the control outline:
+Create a subclass from `StackLayout` in the .NET Standard library project, name it `ToggleButton`, it holds two children: [`Label`](xref:Xamarin.Forms.Label) and [`BoxView`](xref:Xamarin.Forms.BoxView), the following diagram illustrates the control outline:
 
 ![](custom-controls-images/togglebutton-layout.png "Togle bar control outline")
 
