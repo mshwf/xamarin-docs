@@ -33,7 +33,8 @@ The process for creating custom controls is as follows:
 
 1. [Create](#Create_Subclass_of_the_View_You_Want_To_Extend) a subclass of the view you want to extend or modify.
 2. [Alter](#Alter_the_Functionality_of_the_Subclass) the functionality of the subclass by overriding the default values of the base class’s bindable properties and/or create new bindable properties that will interact with user actions.
-3. [Process](#Process_Inputs_Through_the_propertyChanged_Delegate) inputs through the `propertyChanged` delegate of the newly added bindable properties.
+3. [Initializing](initializing_the_custom_control) the custom control.
+4. [Process](#Process_Inputs_Through_the_propertyChanged_Delegate) inputs through the `propertyChanged` delegate of the newly added bindable properties.
 
 <a name="Create_Subclass_of_the_View_You_Want_To_Extend" />
 
@@ -77,6 +78,12 @@ The process of creating a bindable property is as follows:
 > Custom bindable properties in custom controls can be categorized into two types:
 > 1. Bindable properties that are passed down to the built-in bindable properties of child elements, like `Text` bindable property of the `ToggleButton` custom control, that is passed down to the `Text` bindable property of the `Label` control.
 > 2. Bindable properties that are specific to the custom control itself and not owned exclusively by any of the child elements, like the `IsSelected` bindable property. The more behavioral customization required to the custom control, the more of these bindable properties are needed.
+
+<a name="initializing_the_custom_control" />
+
+## Initializing the custom control
+
+After creating the bindable properties that define how the control works, we need to initialize the control, initializ
 
 <a name="Process_Inputs_Through_the_propertyChanged_Delegate" />
 
