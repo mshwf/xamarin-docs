@@ -107,7 +107,6 @@ public ToggleButton()
     label.SetBinding(Label.HeightRequestProperty, new Binding(nameof(HeightRequest), source: verticalStack));
     label.SetBinding(Label.FontFamilyProperty, new Binding(nameof(FontFamily), source: this));
     label.SetBinding(Label.FontSizeProperty, new Binding(nameof(FontSize), source: this));
-    label.SetBinding(Label.FontSizeProperty, new Binding(nameof(FontSize), source: this));
     boxView.SetBinding(BoxView.BackgroundColorProperty, new Binding(nameof(BackgroundColor), source: verticalStack));
     verticalStack.GestureRecognizers.Add(new TapGestureRecognizer()
     {
