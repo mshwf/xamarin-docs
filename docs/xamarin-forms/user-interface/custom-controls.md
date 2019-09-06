@@ -33,14 +33,15 @@ The process for creating custom controls is as follows:
 
 1. [Create](#Create_Subclass_of_the_View_You_Want_To_Extend) a subclass of the view you want to extend or modify.
 2. [Alter](#Alter_the_Functionality_of_the_Subclass) the functionality of the subclass by overriding the default values of the base class’s bindable properties and/or create new bindable properties that will interact with user actions.
-3. [Initializing](initializing_the_custom_control) the custom control.
-4. [Process](#Process_Inputs_Through_the_propertyChanged_Delegate) inputs through the `propertyChanged` delegate of the newly added bindable properties.
+3. [Initialize](initializing_the_custom_control) the custom control.
+4. [Process](#Process_Inputs_in_Run_Time) inputs in run-time through the `propertyChanged` delegate of the newly added bindable properties.
 
 <a name="Create_Subclass_of_the_View_You_Want_To_Extend" />
 
 ## Create a Subclass of the View you Want to Extend
 
-Create a subclass from `StackLayout` in the .NET Standard library project, name it `ToggleButton`, it holds two children: [`Label`](xref:Xamarin.Forms.Label) and [`BoxView`](xref:Xamarin.Forms.BoxView), the following diagram illustrates the control outline:
+Most of custom controls are hosted in a `ContentView` as it is the simplest container and doesn't expose special properties (like `Orientation` of the `StackLayout` that can interfer with the the control behavior).
+Create a subclass from `ContentView` in the .NET Standard library project, name it `ToggleButton`, it holds the `StackLayout` that has two children: [`Label`](xref:Xamarin.Forms.Label) and [`BoxView`](xref:Xamarin.Forms.BoxView), the following diagram illustrates the control outline:
 
 ![](custom-controls-images/togglebutton-layout.png "Togle bar control outline")
 
@@ -54,7 +55,7 @@ Create the bindable properties: `IsSelected`, `SelectedColor`, `UnselectedColor`
 
 ```csharp
 public static readonly BindableProperty SelectedColorProperty = BindableProperty.Create(nameof(SelectedColor), typeof(Color), typeof(ToggleButton),
-defaultValue: Color.Default, propertyChanged: CustomPropertyChanged);
+defaultValue: Color.Default);
 
  public Color SelectedColor
  {
@@ -83,58 +84,66 @@ The process of creating a bindable property is as follows:
 
 ## Initializing the custom control
 
-After creating the bindable properties that define how the control works, we need to initialize the control, initializ
-
-<a name="Process_Inputs_Through_the_propertyChanged_Delegate" />
-
-## Process Inputs Through the [`propertyChanged`](xref:Xamarin.Forms.BindableProperty.BindingPropertyChangedDelegate) Delegate
-
-Attach the [`propertyChanged`](xref:Xamarin.Forms.BindableProperty.BindingPropertyChangedDelegate) delegate of the bindable properties: `SelectedColor`, `UnselectedColor`, `Text`, `FontFamily` and `FontSize`, to `CustomPropertyChanged` method, that will process inputs from the user, like setting the `Label`'s `Text` and `TextColor` properties from the `ToggleButton`'s `Text` and `UnselectedColor` properties respectively, and add a [`TapGestureRecognizer`](xref:Xamarin.Forms.TapGestureRecognizer) to the `Label`’s `GestureRecognizers` collection that will mutate the selection state of the `ToggleButton` when the `Label` is tapped. The `TapGestureRecognizer` provides two approaches for handling the tap action: by the [`Tapped`](xref:Xamarin.Forms.TapGestureRecognizer.Tapped) event, or by the [`Command`](xref:Xamarin.Forms.TapGestureRecognizer.Command) property. For more information about the tap gesture recognizer, see [Adding a tap gesture recognizer](~/xamarin-forms/app-fundamentals/gestures/tap.md).
-
+In the constructor of the `ToggleButton` class, initialite the inner controls and create the bindings between the new properties of the custom control and the properties of the inner controls (i.e., the StackLayout, the Label and the BoxView):
 ```csharp
-private static void CustomPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+public ToggleButton()
 {
-    if (newValue == null) return;
-    ((ToggleButton)bindable).Render();
-}
+    label.SetBinding(Label.TextColorProperty, new Binding(nameof(UnselectedColor), source: this));
+    label.SetBinding(Label.TextProperty, new Binding(nameof(Text), source: this));
+    label.SetBinding(Label.BackgroundColorProperty, new Binding(nameof(BackgroundColor), source: verticalStack));
+    label.SetBinding(Label.WidthRequestProperty, new Binding(nameof(WidthRequest), source: verticalStack));
+    label.SetBinding(Label.HeightRequestProperty, new Binding(nameof(HeightRequest), source: verticalStack));
+    label.SetBinding(Label.FontFamilyProperty, new Binding(nameof(FontFamily), source: this));
+    label.SetBinding(Label.FontSizeProperty, new Binding(nameof(FontSize), source: this));
+    label.SetBinding(Label.FontSizeProperty, new Binding(nameof(FontSize), source: this));
 
-private void Render()
-{
-    button = new Label
-    {
-        TextColor = UnselectedColor,
-        Text = Text,
-        BackgroundColor = BackgroundColor,
-        FontFamily = FontFamily,
-        FontSize = FontSize,
-        HorizontalTextAlignment = TextAlignment.Center,
-        VerticalTextAlignment = TextAlignment.Center,
-        WidthRequest = WidthRequest,
-        HeightRequest = HeightRequest,
-        Margin = new Thickness(5)
-    };
+    boxView.SetBinding(BoxView.BackgroundColorProperty, new Binding(nameof(BackgroundColor), source: verticalStack));
+    boxView.HeightRequest = verticalStack.HeightRequest > 0 ? verticalStack.HeightRequest / 10d : 2;
 
-    underLine = new BoxView { HeightRequest = HeightRequest > 0 ? HeightRequest / 10d : 2, Color = BackgroundColor };
-
-    Children.Clear();
-    Children.Add(button);
-    Children.Add(underLine);
-    button.GestureRecognizers.Add(new TapGestureRecognizer()
-    {
+    label.GestureRecognizers.Add(new TapGestureRecognizer()
+     {
         Command = new Command(() =>
         {
             IsSelected = !IsSelected;
-            SelectionChanged?.Invoke(this, EventArgs.Empty);
+            SelectionChanged?.Invoke(this, IsSelected);
         })
-    });
+     });
+    verticalStack.Children.Add(label);
+    verticalStack.Children.Add(boxView);
+    Content = verticalStack;
+ }
+```
 
+A [`TapGestureRecognizer`](xref:Xamarin.Forms.TapGestureRecognizer) is added to the `Label`’s `GestureRecognizers` collection to mutate the selection state of the `ToggleButton` when the `Label` is tapped. The `TapGestureRecognizer` provides two approaches for handling the tap action: by the [`Tapped`](xref:Xamarin.Forms.TapGestureRecognizer.Tapped) event, or by the [`Command`](xref:Xamarin.Forms.TapGestureRecognizer.Command) property. For more information about the tap gesture recognizer, see [Adding a tap gesture recognizer](~/xamarin-forms/app-fundamentals/gestures/tap.md).
 
+<a name="Process_Inputs_in_Run_Time" />
+
+## Process Inputs in run-time Through the [`propertyChanged`](xref:Xamarin.Forms.BindableProperty.BindingPropertyChangedDelegate) Delegate
+
+Add the [`propertyChanged`](xref:Xamarin.Forms.BindableProperty.BindingPropertyChangedDelegate) parameter to the `BindableProperty.Create` method used to create the `IsSelectedProperty`, and handle it to mutate the visual state of the control based on the `IsSelected` value:
+```csharp
+public static readonly BindableProperty IsSelectedProperty =
+    BindableProperty.Create(nameof(IsSelected), typeof(bool), typeof(ToggleButton), false,
+        propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((ToggleButton)bindable).MutateSelect();
+        }
+    );
+        
+void MutateSelect()
+{
+    if (IsSelected)
+    {
+        button.TextColor = SelectedColor;
+        underLine.Color = SelectedColor;
+    }
+    else
+    {
+        button.TextColor = UnselectedColor;
+        underLine.Color = BackgroundColor;
+    }
 }
 ```
-The `CustomPropertyChanged` is called whenever the bindable property, which [`propertyChanged`](xref:Xamarin.Forms.BindableProperty.BindingPropertyChangedDelegate) delegate is attached to, changes, a change occurs when the property is set when the custom control is initialized. Typically, bindable properties' `propertyChanged` delegate are attached to the same method, when they are responsible for customizing the control's appearance, because we want to make sure all properties are updated once another property changes. The `IsSelected` bindable property isn't attached to a `propertyChanged` delegate beacuse no UI customization is required based on its initial value, but if the value of the `IsSelected` property is set, for example, from data binding, then `propertyChanged` is required to initialize the control with the correct state based on the `IsSelected` property value. In this tutorial, the control is always initialized in unselected state (`IsSelected` value is `false`).
-
-> [!NOTE]
-> When the custom control is initialized, `propertyChanged` delegate is called in the same order as the properties initialization order in XAML (or code), so for properties attached to the same delegate, the last call to the delegate handler is where all properties have been set.
 
 The `Render` method initializes the control properties, for example the `TextColor` property of the `Label` gets the value of `UnselectedColor` property of the custom control beacause the control is rendered in unselected state, similarly, the `BoxView`'s `Color` property is initialized with the value of the `BackgroundColor` of the `StackLayout` to hide it, it only gets highlited with `SelectedColor` value when the control is selected. Setting the `WidthRequest` and `HeightRequest` for the `Label` and `HeightRequest` for the `BoxView` ensures they scale with the `StackLayout` size.
 
@@ -159,21 +168,6 @@ public bool IsSelected
 
 The `MutateSelect` method is where the selection state gets updated visually when the `IsSelected` is mutated:
 
-```csharp
-void MutateSelect()
-{
-    if (IsSelected)
-    {
-        button.TextColor = SelectedColor;
-        underLine.Color = SelectedColor;
-    }
-    else
-    {
-        button.TextColor = UnselectedColor;
-        underLine.Color = BackgroundColor;
-    }
-}
-```
 
 ## Consuming the Custom Control
 The `ToggleButton` control can be referenced in XAML in the .NET Standard library project by declaring a namespace for its location and using the namespace prefix on the control element. The following code example shows how the `ToggleButton` control can be consumed by a XAML page:
