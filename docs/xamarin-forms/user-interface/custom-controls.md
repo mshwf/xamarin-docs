@@ -97,9 +97,15 @@ public ToggleButton()
     {
         HorizontalTextAlignment = TextAlignment.Center,
         VerticalTextAlignment = TextAlignment.Center,
+        VerticalOptions = LayoutOptions.CenterAndExpand,
         Margin = new Thickness(5)
     };
-    boxView = new BoxView { HeightRequest = HeightRequest > 0 ? HeightRequest / 10d : 2 };
+    boxView = new BoxView
+    {
+    VerticalOptions = LayoutOptions.End,
+    HeightRequest = HeightRequest > 0 ? HeightRequest / 10d : 2
+    };
+
     label.SetBinding(Label.TextColorProperty, new Binding(nameof(UnselectedColor), source: this));
     label.SetBinding(Label.TextProperty, new Binding(nameof(Text), source: this));
     label.SetBinding(Label.BackgroundColorProperty, new Binding(nameof(BackgroundColor), source: verticalStack));
