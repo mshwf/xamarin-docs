@@ -45,7 +45,7 @@ Create a subclass from `ContentView` in the .NET Standard library project, name 
 
 ![](custom-controls-images/togglebutton-layout.png "Togle bar control outline")
 
-When the `Label` is tapped, the selection state is mutated. The visual state is defined by the [`TextColor`](xref:Xamarin.Forms.Label.TextColor) property of the `Label` and the [`Color`](xref:Xamarin.Forms.BoxView.Color) property of the `BoxView`.
+When the `StackLayout` is tapped, the selection state is mutated. The visual state is defined by the [`TextColor`](xref:Xamarin.Forms.Label.TextColor) property of the `Label` and the [`Color`](xref:Xamarin.Forms.BoxView.Color) property of the `BoxView`.
 
 <a name="Alter_the_Functionality_of_the_Subclass" />
 
@@ -109,7 +109,7 @@ public ToggleButton()
     label.SetBinding(Label.FontSizeProperty, new Binding(nameof(FontSize), source: this));
     label.SetBinding(Label.FontSizeProperty, new Binding(nameof(FontSize), source: this));
     boxView.SetBinding(BoxView.BackgroundColorProperty, new Binding(nameof(BackgroundColor), source: verticalStack));
-    label.GestureRecognizers.Add(new TapGestureRecognizer()
+    verticalStack.GestureRecognizers.Add(new TapGestureRecognizer()
     {
         Command = new Command(() =>
         {
@@ -125,7 +125,7 @@ public ToggleButton()
 ```
 The constructor initializes the control properties, for example the `TextColor` property of the `Label` is bound to the `UnselectedColor` property of the custom control beacause the control is rendered in unselected state if `IsSelected` is not set, similarly, the `BoxView`'s `Color` property is bound to the value of the `BackgroundColor` of the `StackLayout` to hide it, it only gets highlited with `SelectedColor` value when the control is selected. Setting the `WidthRequest` and `HeightRequest` for the `Label` and `HeightRequest` for the `BoxView` ensures they scale with the `StackLayout` size.
 
-A [`TapGestureRecognizer`](xref:Xamarin.Forms.TapGestureRecognizer) is added to the `Label`’s `GestureRecognizers` collection to mutate the selection state of the `ToggleButton` when the `Label` is tapped, . The `TapGestureRecognizer` provides two approaches for handling the tap action: by the [`Tapped`](xref:Xamarin.Forms.TapGestureRecognizer.Tapped) event, or by the [`Command`](xref:Xamarin.Forms.TapGestureRecognizer.Command) property. For more information about the tap gesture recognizer, see [Adding a tap gesture recognizer](~/xamarin-forms/app-fundamentals/gestures/tap.md). When the value of `IsSelected` propery changes, the `propertyChanged` delegate handles the visual state of the control (see next section).
+A [`TapGestureRecognizer`](xref:Xamarin.Forms.TapGestureRecognizer) is added to the `StackLayout`’s `GestureRecognizers` collection to mutate the selection state of the `ToggleButton` when the `StackLayout` is tapped. The `TapGestureRecognizer` provides two approaches for handling the tap action: by the [`Tapped`](xref:Xamarin.Forms.TapGestureRecognizer.Tapped) event, or by the [`Command`](xref:Xamarin.Forms.TapGestureRecognizer.Command) property. For more information about the tap gesture recognizer, see [Adding a tap gesture recognizer](~/xamarin-forms/app-fundamentals/gestures/tap.md). When the value of `IsSelected` propery changes, the `propertyChanged` delegate handles the visual state of the control (see next section).
 
 <a name="Process_Inputs_in_Run_Time" />
 
