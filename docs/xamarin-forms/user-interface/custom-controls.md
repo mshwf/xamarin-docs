@@ -127,6 +127,12 @@ The constructor initializes the control properties, for example the `TextColor` 
 
 A [`TapGestureRecognizer`](xref:Xamarin.Forms.TapGestureRecognizer) is added to the `StackLayout`’s `GestureRecognizers` collection to mutate the selection state of the `ToggleButton` when the `StackLayout` is tapped. The `TapGestureRecognizer` provides two approaches for handling the tap action: by the [`Tapped`](xref:Xamarin.Forms.TapGestureRecognizer.Tapped) event, or by the [`Command`](xref:Xamarin.Forms.TapGestureRecognizer.Command) property. For more information about the tap gesture recognizer, see [Adding a tap gesture recognizer](~/xamarin-forms/app-fundamentals/gestures/tap.md). When the value of `IsSelected` propery changes, the `propertyChanged` delegate handles the visual state of the control (see next section).
 
+Create `SelectionChanged` event that gets invoked when the `StackLayout` is tapped, to notify consumers of the `ToggleButton` (e.g. the `ToggleBar` control) when selection changes:
+
+```csharp
+public event EventHandler<bool> SelectionChanged;
+```
+
 <a name="Process_Inputs_in_Run_Time" />
 
 ## Process Inputs in run-time Through the [`propertyChanged`](xref:Xamarin.Forms.BindableProperty.BindingPropertyChangedDelegate) Delegate
@@ -152,24 +158,6 @@ void MutateSelect()
     {
         button.TextColor = UnselectedColor;
         underLine.Color = BackgroundColor;
-    }
-}
-```
-
-Create `SelectionChanged` event that gets invoked when the `Label` is tapped, to notify consumers of the `ToggleButton` (i.e. the `ToggleBar` control) when selection changes:
-
-```csharp
-public event EventHandler<bool> SelectionChanged;
-```
-
-When the `Label` is tapped we need to change the selection state of the control, create `MutateSelect` method and call it in the set accessor of the `IsSelected` property that gets mutated when the `Label` is tapped:
-```csharp
-public bool IsSelected
-{
-    get { return (bool)GetValue(IsSelectedProperty); }
-    set
-    {
-        SetValue(IsSelectedProperty, value);
     }
 }
 ```
