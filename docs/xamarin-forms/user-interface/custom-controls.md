@@ -102,8 +102,8 @@ public ToggleButton()
     };
     boxView = new BoxView
     {
-    VerticalOptions = LayoutOptions.End,
-    HeightRequest = HeightRequest > 0 ? HeightRequest / 10d : 2
+        VerticalOptions = LayoutOptions.End,
+        HeightRequest = HeightRequest > 0 ? HeightRequest / 10d : 2
     };
 
     label.SetBinding(Label.TextColorProperty, new Binding(nameof(UnselectedColor), source: this));
