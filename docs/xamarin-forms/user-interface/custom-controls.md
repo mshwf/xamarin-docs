@@ -88,6 +88,18 @@ In the constructor of the `ToggleButton` class, initialite the inner controls an
 ```csharp
 public ToggleButton()
 {
+    verticalStack = new StackLayout
+    {
+        Spacing = 0,
+        HorizontalOptions = LayoutOptions.FillAndExpand
+    };
+    label = new Label
+    {
+        HorizontalTextAlignment = TextAlignment.Center,
+        VerticalTextAlignment = TextAlignment.Center,
+        Margin = new Thickness(5)
+    };
+    boxView = new BoxView { HeightRequest = HeightRequest > 0 ? HeightRequest / 10d : 2 };
     label.SetBinding(Label.TextColorProperty, new Binding(nameof(UnselectedColor), source: this));
     label.SetBinding(Label.TextProperty, new Binding(nameof(Text), source: this));
     label.SetBinding(Label.BackgroundColorProperty, new Binding(nameof(BackgroundColor), source: verticalStack));
@@ -96,25 +108,24 @@ public ToggleButton()
     label.SetBinding(Label.FontFamilyProperty, new Binding(nameof(FontFamily), source: this));
     label.SetBinding(Label.FontSizeProperty, new Binding(nameof(FontSize), source: this));
     label.SetBinding(Label.FontSizeProperty, new Binding(nameof(FontSize), source: this));
-
     boxView.SetBinding(BoxView.BackgroundColorProperty, new Binding(nameof(BackgroundColor), source: verticalStack));
-    boxView.HeightRequest = verticalStack.HeightRequest > 0 ? verticalStack.HeightRequest / 10d : 2;
-
     label.GestureRecognizers.Add(new TapGestureRecognizer()
-     {
+    {
         Command = new Command(() =>
         {
             IsSelected = !IsSelected;
             SelectionChanged?.Invoke(this, IsSelected);
         })
-     });
+    });
+
     verticalStack.Children.Add(label);
     verticalStack.Children.Add(boxView);
     Content = verticalStack;
- }
+}
 ```
+The constructor initializes the control properties, for example the `TextColor` property of the `Label` is bound to the `UnselectedColor` property of the custom control beacause the control is rendered in unselected state if `IsSelected` is not set, similarly, the `BoxView`'s `Color` property is bound to the value of the `BackgroundColor` of the `StackLayout` to hide it, it only gets highlited with `SelectedColor` value when the control is selected. Setting the `WidthRequest` and `HeightRequest` for the `Label` and `HeightRequest` for the `BoxView` ensures they scale with the `StackLayout` size.
 
-A [`TapGestureRecognizer`](xref:Xamarin.Forms.TapGestureRecognizer) is added to the `Label`’s `GestureRecognizers` collection to mutate the selection state of the `ToggleButton` when the `Label` is tapped. The `TapGestureRecognizer` provides two approaches for handling the tap action: by the [`Tapped`](xref:Xamarin.Forms.TapGestureRecognizer.Tapped) event, or by the [`Command`](xref:Xamarin.Forms.TapGestureRecognizer.Command) property. For more information about the tap gesture recognizer, see [Adding a tap gesture recognizer](~/xamarin-forms/app-fundamentals/gestures/tap.md).
+A [`TapGestureRecognizer`](xref:Xamarin.Forms.TapGestureRecognizer) is added to the `Label`’s `GestureRecognizers` collection to mutate the selection state of the `ToggleButton` when the `Label` is tapped, . The `TapGestureRecognizer` provides two approaches for handling the tap action: by the [`Tapped`](xref:Xamarin.Forms.TapGestureRecognizer.Tapped) event, or by the [`Command`](xref:Xamarin.Forms.TapGestureRecognizer.Command) property. For more information about the tap gesture recognizer, see [Adding a tap gesture recognizer](~/xamarin-forms/app-fundamentals/gestures/tap.md). When the value of `IsSelected` propery changes, the `propertyChanged` delegate handles the visual state of the control (see next section).
 
 <a name="Process_Inputs_in_Run_Time" />
 
@@ -145,12 +156,10 @@ void MutateSelect()
 }
 ```
 
-The `Render` method initializes the control properties, for example the `TextColor` property of the `Label` gets the value of `UnselectedColor` property of the custom control beacause the control is rendered in unselected state, similarly, the `BoxView`'s `Color` property is initialized with the value of the `BackgroundColor` of the `StackLayout` to hide it, it only gets highlited with `SelectedColor` value when the control is selected. Setting the `WidthRequest` and `HeightRequest` for the `Label` and `HeightRequest` for the `BoxView` ensures they scale with the `StackLayout` size.
-
 Create `SelectionChanged` event that gets invoked when the `Label` is tapped, to notify consumers of the `ToggleButton` (i.e. the `ToggleBar` control) when selection changes:
 
 ```csharp
-public event EventHandler SelectionChanged;
+public event EventHandler<bool> SelectionChanged;
 ```
 
 When the `Label` is tapped we need to change the selection state of the control, create `MutateSelect` method and call it in the set accessor of the `IsSelected` property that gets mutated when the `Label` is tapped:
@@ -161,13 +170,9 @@ public bool IsSelected
     set
     {
         SetValue(IsSelectedProperty, value);
-        MutateSelect();
     }
 }
 ```
-
-The `MutateSelect` method is where the selection state gets updated visually when the `IsSelected` is mutated:
-
 
 ## Consuming the Custom Control
 The `ToggleButton` control can be referenced in XAML in the .NET Standard library project by declaring a namespace for its location and using the namespace prefix on the control element. The following code example shows how the `ToggleButton` control can be consumed by a XAML page:
@@ -216,3 +221,4 @@ This article has demonstrated how to create a custom control in Xamarin.Forms, e
 
 - [Xamarin.Forms Bindable Properties](~/xamarin-forms/xaml/bindable-properties.md)
 - [CustomControlsSample (sample)](https://docs.microsoft.com/samples/xamarin/xamarin-forms-samples/CustomControlsSample)
+- [Creating Custom Controls with Xamarin Forms](https://www.youtube.com/watch?v=ZViJyL9Ptqg)
