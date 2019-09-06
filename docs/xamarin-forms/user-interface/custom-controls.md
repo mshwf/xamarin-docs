@@ -14,7 +14,7 @@ The process of building UI elements requires, at some point, some customizations
 
 ## Create a Custom ToggleBar Control
 
-The `ToggleBar` control is used to show some options that the user can choose from, for example a filtering mechanism (similar to a group of radio buttons), or a light-weight tabbed control..etc, see the screenshot below (should look the same on iOS):
+The `ToggleBar` control can be used to show some options that the user can choose from, for example a filtering mechanism (similar to a group of radio buttons), or a light-weight tabbed control..etc, see the screenshot below (should look the same on iOS):
 
 [screenshot (on Android)]
 
