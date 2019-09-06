@@ -84,7 +84,7 @@ The process of creating a bindable property is as follows:
 
 ## Initializing the custom control
 
-In the constructor of the `ToggleButton` class, initialite the inner controls and create the bindings between the new properties of the custom control and the properties of the inner controls (i.e., the StackLayout, the Label and the BoxView):
+In the constructor of the `ToggleButton` class, initialize the inner controls and create the bindings between the new properties of the custom control and the properties of the inner controls (i.e., the StackLayout, the Label and the BoxView):
 ```csharp
 public ToggleButton()
 {
