@@ -352,7 +352,7 @@ You can provide *both* `EnterActions` and `ExitActions` as
         <Trigger TargetType="Entry"
                  Property="Entry.IsFocused" Value="True">
             <Trigger.EnterActions>
-                <local:FadeTriggerAction StartsFrom="0"" />
+                <local:FadeTriggerAction StartsFrom="0" />
             </Trigger.EnterActions>
 
             <Trigger.ExitActions>
