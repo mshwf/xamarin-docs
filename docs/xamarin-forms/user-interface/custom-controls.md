@@ -14,8 +14,7 @@ The process of building UI elements requires, at some point, some customizations
 
 ## Create a Custom ProgressBar Control
 
-The `ProgressBar` control can be used to show a progress, whether it's a network process's progress, or a specific business progress, like completeing. Although Xamarin.Forms comes with [`ProgressBar`](xref:Xamarin.Forms.ProgressBar) control, in other scenarios 
-may need an extension inthe look and behavior.
+The `ProgressBar` control can be used to show a progress, whether it's a network process's progress, or a specific business progress, like completeing a task by the app end-user to motivate him. Although Xamarin.Forms comes with [`ProgressBar`](xref:Xamarin.Forms.ProgressBar) control, in other scenarios may not be fittable with it.
 The custom `ProgressBar` control uses animation while progressing, it exposes some bindable properties that determine the control look.
 
 Bindable properties are the foundation of custom controls (For more information about Xamarin.Forms bindable properties, see [Xamarin.Forms Bindable Properties](~/xamarin-forms/xaml/bindable-properties.md)).
