@@ -14,8 +14,12 @@ The process of building UI elements requires, at some point, some customizations
 
 ## Create a Custom ProgressBar Control
 
-The `ProgressBar` control can be used to show a progress. Although Xamarin.Forms comes with [`ProgressBar`](xref:Xamarin.Forms.ProgressBar) control already, you might need a more sophisticated control, for example, for an application feature based on progressing on some task.
+The `ProgressBar` control is used to show a progress. Although Xamarin.Forms comes with [`ProgressBar`](xref:Xamarin.Forms.ProgressBar) control already, you might need a more sophisticated control, for example, for an application feature that is based on promotion.
 The custom `ProgressBar` control uses animation while progressing, it exposes some bindable properties that determine the control look.
+
+The control is completely configured through its bindable properties, (See the screenshot):
+
+![](custom-controls-images/progresses.png "ProgressBar control")
 
 Bindable properties are the foundation of custom controls (For more information about Xamarin.Forms bindable properties, see [Xamarin.Forms Bindable Properties](~/xamarin-forms/xaml/bindable-properties.md)).
 
@@ -30,12 +34,10 @@ The process for creating custom controls is as follows:
 
 ## Create a Subclass of the View you Want to Extend
 
-Most of custom controls are hosted in a `ContentView` as it is the simplest container and doesn't expose special properties (like `Orientation` of the `StackLayout` that may be interfer with the the control behavior).
-Create a subclass from `ContentView` in the .NET Standard library project, name it `CustomProgressBar`, it holds the `StackLayout` that has two children: [`Label`](xref:Xamarin.Forms.Label) and [`BoxView`](xref:Xamarin.Forms.BoxView), the following diagram illustrates the control outline:
+Most of custom controls are hosted in a `ContentView` as it is the simplest container and doesn't expose special properties (like `Orientation` of the `StackLayout` that may interfer with the the control behavior).
+Create a subclass from `ContentView` in the .NET Standard library project, name it `CustomProgressBar`,
 
-![](custom-controls-images/togglebutton-layout.png "Togle bar control outline")
 
-When the `StackLayout` is tapped, the selection state is mutated. The visual state is defined by the [`TextColor`](xref:Xamarin.Forms.Label.TextColor) property of the `Label` and the [`Color`](xref:Xamarin.Forms.BoxView.Color) property of the `BoxView`.
 
 <a name="Alter_the_Functionality_of_the_Subclass" />
 
