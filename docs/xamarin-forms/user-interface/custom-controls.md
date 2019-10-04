@@ -14,7 +14,7 @@ The process of building UI elements requires, at some point, some customizations
 
 ## Create a Custom ProgressBar Control
 
-The `ProgressBar` control can be used to show a progress, whether it's a network process's progress, or a specific business progress, like completeing a task by the app end-user to motivate him. Although Xamarin.Forms comes with [`ProgressBar`](xref:Xamarin.Forms.ProgressBar) control, in other scenarios may not be fittable with it.
+The `ProgressBar` control can be used to show a progress. Although Xamarin.Forms comes with [`ProgressBar`](xref:Xamarin.Forms.ProgressBar) control already, you might need a more sophisticated control, for example, for an application feature based on progressing on some task.
 The custom `ProgressBar` control uses animation while progressing, it exposes some bindable properties that determine the control look.
 
 Bindable properties are the foundation of custom controls (For more information about Xamarin.Forms bindable properties, see [Xamarin.Forms Bindable Properties](~/xamarin-forms/xaml/bindable-properties.md)).
@@ -30,8 +30,8 @@ The process for creating custom controls is as follows:
 
 ## Create a Subclass of the View you Want to Extend
 
-Most of custom controls are hosted in a `ContentView` as it is the simplest container and doesn't expose special properties (like `Orientation` of the `StackLayout` that can interfer with the the control behavior).
-Create a subclass from `ContentView` in the .NET Standard library project, name it `ToggleButton`, it holds the `StackLayout` that has two children: [`Label`](xref:Xamarin.Forms.Label) and [`BoxView`](xref:Xamarin.Forms.BoxView), the following diagram illustrates the control outline:
+Most of custom controls are hosted in a `ContentView` as it is the simplest container and doesn't expose special properties (like `Orientation` of the `StackLayout` that may be interfer with the the control behavior).
+Create a subclass from `ContentView` in the .NET Standard library project, name it `CustomProgressBar`, it holds the `StackLayout` that has two children: [`Label`](xref:Xamarin.Forms.Label) and [`BoxView`](xref:Xamarin.Forms.BoxView), the following diagram illustrates the control outline:
 
 ![](custom-controls-images/togglebutton-layout.png "Togle bar control outline")
 
