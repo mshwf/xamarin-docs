@@ -12,22 +12,13 @@ ms.date: 05/23/2019
 
 The process of building UI elements requires, at some point, some customizations to give the unique feel and look to the application and to extend the functionality of existing controls. Whether the customization is just overriding the default [`TextColor`](xref:Xamarin.Forms.Entry.TextColor) of the [`Entry`](xref:Xamarin.Forms.Entry) control, or creating a brand new control with new look and behavior, building custom controls can provide the simple solution to achieve that, without the need of custom renderers.
 
-## Create a Custom ToggleBar Control
+## Create a Custom ProgressBar Control
 
-The `ToggleBar` control can be used to show some options that the user can choose from, for example a filtering mechanism (similar to a group of radio buttons), or a light-weight tabbed control..etc, see the screenshot below (should look the same on iOS):
-
-[screenshot (on Android)]
-
-The behavior of the control is as follows:
-
-1. Every button in the control has a selected state and an unselected state determined by the `IsSelected` bindable property.
-2. The states are visually distinguished through the `SelectedColor` and the `UnselectedColor` bindable properties.
-3. The selected items can be obtained through the bindable property `SelectedItems`.
-4. The control supports multi-selection (that’s why it’s `SelectedItems` not `SelectedItem`) by setting the `IsMultiSelect` bindable property to `true` (defaults to `false`).
+The `ProgressBar` control can be used to show a progress, whether it's a network process's progress, or a specific business progress, like completeing. Although Xamarin.Forms comes with [`ProgressBar`](xref:Xamarin.Forms.ProgressBar) control, in other scenarios 
+may need an extension inthe look and behavior.
+The custom `ProgressBar` control uses animation while progressing, it exposes some bindable properties that determine the control look.
 
 Bindable properties are the foundation of custom controls (For more information about Xamarin.Forms bindable properties, see [Xamarin.Forms Bindable Properties](~/xamarin-forms/xaml/bindable-properties.md)).
-
-Every button inside the `ToggleBar` control is a custom control by itself. This article will guide you through creating the `ToggleButton` control and the same concepts can be leveraged in the `ToggleBar` control (see the complete sample).
 
 The process for creating custom controls is as follows:
 
